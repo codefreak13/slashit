@@ -19,7 +19,7 @@ import Instagram from '../assets/images/Instagram'
 import Moon from '../assets/images/Moon'
 import HomeScreen from '../screens/Home/Home.screen'
 import UpcomingRepaymentsScreen from './upcomingRequestStack';
-import TransactionsScreen from '../screens/Transactions/Transactions.screen'
+import TransactionsScreen from './transactionsStack'
 
 const Drawer = createDrawerNavigator()
 const Stack = createStackNavigator()

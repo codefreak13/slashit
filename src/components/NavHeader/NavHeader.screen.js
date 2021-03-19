@@ -3,8 +3,9 @@ import { View, TouchableOpacity, Text } from 'react-native'
 import Fontisto from 'react-native-vector-icons/Fontisto'
 import BackIcon from '../../assets/images/BackIcon'
 import styles from './NavHeader.style'
-
-const NavHeader = ({ navigation, title, rightSection, leftSection, leftSectionAction }) => {
+import {useNavigation} from "@react-navigation/native";
+const NavHeader = ({ title, rightSection, leftSection, leftSectionAction }) => {
+  const navigation = useNavigation();
   const RS = rightSection || <View />
   const LS = leftSection || <View />
 
@@ -15,7 +16,7 @@ const NavHeader = ({ navigation, title, rightSection, leftSection, leftSectionAc
           style={{ paddingLeft: 15 }}
           onPress={() => navigation.goBack()}>
           <View>
-            <RS />
+           {<BackIcon /> ||<RS />} 
           </View>
         </TouchableOpacity>
       </View>
