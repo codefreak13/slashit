@@ -10,9 +10,12 @@ import {
 import BackIcon from '../../assets/images/BackIcon'
 import NavHeader from '../../components/NavHeader/NavHeader.screen'
 import styles from './Transactions.style'
+import {useNavigation} from "@react-navigation/native";
 
-export const TransactionList = ({ data, onPress }) => (
-  <TouchableOpacity>
+export const TransactionList = ({ data }) =>{
+  const navigation = useNavigation()
+  return  (
+  <TouchableOpacity onPress={()=> navigation.navigate("TransactionDetails")}>
     <View style={styles.list}>
       <View style={styles.listItem}>
         <Text>{data.date}</Text>
@@ -25,6 +28,7 @@ export const TransactionList = ({ data, onPress }) => (
     </View>
   </TouchableOpacity>
 )
+}
 
 const Transactions = ({ navigation }) => {
   const [transactions, setTransaction] = useState([])
@@ -69,7 +73,7 @@ const Transactions = ({ navigation }) => {
 
         <View>
           {transactions.map((val, key) => (
-            <TransactionList key={key} data={val} />
+            <TransactionList   key={key} data={val} />
           ))}
         </View>
       </SafeAreaView>

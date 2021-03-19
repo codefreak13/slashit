@@ -12,8 +12,8 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import { TransactionList } from '../Transactions/Transactions.screen'
 import styles from './UpcomingRepayments.style'
 
-const List = ({ text, onPress }) => (
-  <TouchableOpacity onPress={onPress}>
+const List = ({ text, onPress, navigation }) => (
+  <TouchableOpacity onPress={()=>navigation.navigate("RepaymentDetails")}>
     <View style={styles.list}>
       <Text style={styles.listItem}>{text}</Text>
     </View>
@@ -62,7 +62,7 @@ const UpcomingRepayments = ({ navigation }) => {
 
         <View>
           {upcoming.map((val, key) => (
-            <TransactionList key={key} data={val} />
+            <TransactionList  onPress={()=>navigation.navigate("RepaymentDetails", {id: 'kk'})} key={key} data={val} />
           ))}
         </View>
       </SafeAreaView>
