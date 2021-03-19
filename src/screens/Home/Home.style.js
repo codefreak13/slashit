@@ -5,30 +5,28 @@ export default StyleSheet.create({
     backgroundColor: '#BE61CE',
     height: Dimensions.get('screen').height
   },
-  scrollContent: {
-    
-  },
+  scrollContent: {},
   scrollButton: {
     height: 31,
     width: 130,
     backgroundColor: '#673AB7',
-    justifyContent:'center',
+    justifyContent: 'center',
     borderRadius: 40,
-    marginLeft:20
+    marginLeft: 20
   },
   scrollText: {
     color: '#ffffff',
     textAlign: 'center'
   },
   nav: {
-    margin:10,
+    margin: 10,
     flexDirection: 'row',
-    justifyContent:'space-between'
+    justifyContent: 'space-between'
   },
   captureIcon: {
-    marginTop: Dimensions.get('screen').height/5,
+    marginTop: Dimensions.get('screen').height / 5,
     alignSelf: 'center',
-    width: Dimensions.get('screen').width-20,
+    width: Dimensions.get('screen').width - 20,
     height: 356
   },
   profile: {
