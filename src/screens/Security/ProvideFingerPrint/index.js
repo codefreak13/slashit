@@ -25,7 +25,9 @@ const index = ({ navigation }) => {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
         <View style={{alignItems: 'center' }}>
+          <TouchableOpacity>
           <Ionicons name="finger-print" size={40} style={{  marginBottom: 20}}/>
+          </TouchableOpacity>
           <Text>Touch your device sensor to add finger print</Text>
         </View>
       </SafeAreaView>
