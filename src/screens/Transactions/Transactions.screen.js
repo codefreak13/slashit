@@ -12,10 +12,10 @@ import NavHeader from '../../components/NavHeader/NavHeader.screen'
 import styles from './Transactions.style'
 import {useNavigation} from "@react-navigation/native";
 
-export const TransactionList = ({ data }) =>{
+export const TransactionList = ({ data, navigateTo }) =>{
   const navigation = useNavigation()
   return  (
-  <TouchableOpacity onPress={()=> navigation.navigate("TransactionDetails")}>
+  <TouchableOpacity onPress={()=> navigation.navigate(navigateTo || "TransactionDetails")}>
     <View style={styles.list}>
       <View style={styles.listItem}>
         <Text>{data.date}</Text>

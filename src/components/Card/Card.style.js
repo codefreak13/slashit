@@ -7,7 +7,7 @@ export default StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         backgroundColor: '#673AB7',
-        position: 'relative',
+        // position: 'relative',
         padding: 10,
     },
     cardHeader: {

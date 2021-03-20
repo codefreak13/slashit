@@ -62,7 +62,7 @@ const UpcomingRepayments = ({ navigation }) => {
 
         <View>
           {upcoming.map((val, key) => (
-            <TransactionList  onPress={()=>navigation.navigate("RepaymentDetails", {id: 'kk'})} key={key} data={val} />
+            <TransactionList  navigateTo="RepaymentDetails" key={key} data={val} />
           ))}
         </View>
       </SafeAreaView>

@@ -27,14 +27,30 @@ export default StyleSheet.create({
     marginTop: Dimensions.get('screen').height / 5,
     alignSelf: 'center',
     width: Dimensions.get('screen').width - 20,
-    height: 356
+    height: 356,
   },
   profile: {
     width: 30,
     height: 30
   },
   cardHolder: {
-    marginTop: 50,
-    alignItems: 'center'
-  }
+    // marginTop: 50,
+    alignItems: 'center', 
+  },
+ 
+payWith: {
+  textAlign: 'center',
+  marginVertical: 20,
+  color: '#fff',
+  fontSize: 16,
+  fontWeight: 'bold'
+},
+btn: { 
+  width: '70%',
+  alignSelf: 'center',
+  height: 46,
+  justifyContent: 'center',
+  marginTop: 18,
+  borderRadius: 130
+}
 })
