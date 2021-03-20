@@ -41,10 +41,10 @@ const index = ({ navigation }) => {
           <Text>Shipping Address_</Text>
         </View>
         <View style={{flex: 3}}>
-        <PaidInstallment navigateTo="TransactionsScreen"/>
-        <UnPaidInstallment name="Second" navigateTo="TransactionsScreen"/>
-        <UnPaidInstallment name="Third" navigateTo="TransactionsScreen"/>
-        <UnPaidInstallment name="Final" navigateTo="TransactionsScreen"/>
+        <PaidInstallment navigateTo="TransactionDetails"/>
+        <UnPaidInstallment name="Second" navigateTo="TransactionDetails"/>
+        <UnPaidInstallment name="Third" navigateTo="TransactionDetails"/>
+        <UnPaidInstallment name="Final" navigateTo="TransactionDetails"/>
         <Button
           title="Pay Now"
           containerStyle={{marginVertical: 20, width: '60%', alignSelf: 'center' }}

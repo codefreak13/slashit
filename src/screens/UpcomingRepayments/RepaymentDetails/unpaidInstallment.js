@@ -21,7 +21,7 @@ const UnPaidInstallment = ({ name, navigateTo }) => {
       onValueChange={checked => setIsChecked(checked)}
     />
      <TouchableOpacity onPress={() => navigation.navigate(navigateTo)}
-      style={styles.box}>
+      style={styles.box}>   
       <View style={{ alignItems: 'center' }}>
         <Text style={styles.boldText}>
           {name} Installment

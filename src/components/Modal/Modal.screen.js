@@ -2,11 +2,11 @@ import React from 'react'
 import { Modal as RNModal } from 'react-native'
 
 
-const Modal = ({ visible, onRequestClose, children }) => {
+const Modal = ({ visible, onRequestClose, children, transparent }) => {
     return (
         <RNModal
             animationType="slide"
-            transparent={false}
+            transparent={transparent || false}
             visible={visible}
             onRequestClose={onRequestClose}
         >
