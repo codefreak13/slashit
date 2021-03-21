@@ -17,7 +17,7 @@ import Card from '../assets/images/Card'
 import Lock from '../assets/images/Lock'
 import Instagram from '../assets/images/Instagram'
 import Moon from '../assets/images/Moon'
-import HomeScreen from '../screens/Home/Home.screen'
+import HomeScreen from './homeStack'
 import UpcomingRepaymentsScreen from './upcomingRequestStack';
 import TransactionsScreen from './transactionsStack'
 

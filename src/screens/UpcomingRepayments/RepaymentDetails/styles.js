@@ -5,7 +5,7 @@ export default styles = StyleSheet.create({
     paddingHorizontal: 20
   },
   top: {
-    flex: .6,
+    flex: 1,
     backgroundColor: '#BFC0C4',
     padding: 10,
     paddingVertical: 20,
@@ -19,7 +19,7 @@ export default styles = StyleSheet.create({
     backgroundColor: '#303030',
     marginVertical: 6
   },
-  prod: {flex: 1, marginVertical: 15 },
+  prod: {flex: 2, marginVertical: 15 },
 
   paidContainer: {
     borderLeftWidth: 5,

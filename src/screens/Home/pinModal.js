@@ -8,11 +8,11 @@ import {
   StyleSheet,
   TextInput
 } from 'react-native'
-import AntDesign from 'react-native-vector-icons/AntDesign' 
+import Ionicons from 'react-native-vector-icons/Ionicons' 
 import Modal from '../../components/Modal/Modal.screen'
 import LButton from '../../components/LinearGradientButton'
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input'
-const index = ({ navigation, visible, setModal }) => {
+const index = ({ navigation, visible, setModal, onClosePinModalOpenSuccessModal }) => {
   const [code, setCode] = useState('')
   return (
     <>
@@ -37,7 +37,10 @@ const index = ({ navigation, visible, setModal }) => {
                 onTextChange={code => setCode(code)}
               />
             </View>
-            <LButton title="Pay now" onPress={setModal}/>
+            {/* <LButton title="Pay now" onPress={setModal}/> */}
+            <TouchableOpacity onPress={onClosePinModalOpenSuccessModal}  style={{alignItems: 'center', marginTop: 10 }}>
+          <Ionicons name="finger-print" size={40} />
+        </TouchableOpacity>
           </View>
         </SafeAreaView>
       </Modal>

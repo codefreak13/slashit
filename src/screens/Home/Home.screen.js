@@ -22,15 +22,17 @@ import Card from '../../components/Card/Card.screen'
 import Dots from '../../components/dots'
 import PayModal from './payModal'
 import PinModal from './pinModal'
+import SuccessModal from '../../components/SuccessModal'
 import LButton from '../../components/LinearGradientButton'
 import { getStoredState } from 'redux-persist'
 const Home = ({ navigation }) => {
   const [currentTab, setCurrentTab] = useState('in_3')
   const [modals, setModals] = useState({
     showPayModal: false,
-    showPinModal: false
+    showPinModal: false,
+    showSuccessModal: false
   })
-  const { showPayModal, showPinModal } = modals
+  const { showPayModal, showPinModal, showSuccessModal } = modals
   const handleImageResponse = data => {
     console.log('The data', data)
   }
@@ -42,7 +44,19 @@ const Home = ({ navigation }) => {
     setModals({ ...modals, showPayModal: !showPayModal })
   const togglePinModal = () =>
     setModals({ ...modals, showPinModal: !showPinModal })
-  const openCloseModalOpenPinModal = () => setModals({ ...modals,showPayModal: !showPayModal, showPinModal: !showPinModal })
+    const toggleSuccesModal = () => setModals({ ...modals, showSuccessModal: !showSuccessModal })
+  const openCloseModalOpenPinModal = () =>
+    setModals({
+      ...modals,
+      showPayModal: !showPayModal,
+      showPinModal: !showPinModal
+    })
+  const onClosePinModalOpenSuccessModal = () =>
+    setModals({
+      ...modals,
+      showPinModal: !showPinModal,
+      showSuccessModal: !showSuccessModal
+    })
   const availbaleTabs = [
     {
       id: 'in_3',
@@ -61,8 +75,17 @@ const Home = ({ navigation }) => {
           <TouchableOpacity onPress={() => togglePayModal()}>
             <CaptureArea />
           </TouchableOpacity>
-          <PayModal visible={modals.showPayModal} openCloseModalOpenPinModal={openCloseModalOpenPinModal} setModal={togglePayModal} />
-          <PinModal visible={modals.showPinModal} setModal={togglePinModal} />
+          <PayModal
+            visible={modals.showPayModal}
+            openCloseModalOpenPinModal={openCloseModalOpenPinModal}
+            setModal={togglePayModal}
+          />
+          <PinModal
+            visible={modals.showPinModal}
+            onClosePinModalOpenSuccessModal={onClosePinModalOpenSuccessModal}
+            setModal={togglePinModal}
+          />
+          <SuccessModal setModal={toggleSuccesModal} visible={modals.showSuccessModal} />
         </View>
       )
     },
