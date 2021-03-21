@@ -16,7 +16,7 @@ const NavHeader = ({ title, rightSection, leftSection, leftSectionAction }) => {
           style={{ paddingLeft: 15 }}
           onPress={() => navigation.goBack()}>
           <View>
-           {<BackIcon /> ||<RS />} 
+           {<RS /> ||<BackIcon />} 
           </View>
         </TouchableOpacity>
       </View>
