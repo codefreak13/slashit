@@ -44,7 +44,7 @@ export default StyleSheet.create({
   formInputContainer: {
     borderWidth: 1,
     borderColor: '#757575',
-    marginTop: 30
+    marginBottom: 30
   },
   formLabel: {
     fontSize: 15,

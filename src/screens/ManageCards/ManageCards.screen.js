@@ -8,6 +8,7 @@ import {
   Image,
   TextInput
 } from 'react-native'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import XIcon from '../../assets/images/XIcon'
 import Card from '../../components/Card/Card.screen'
 import Modal from '../../components/Modal/Modal.screen'
@@ -24,7 +25,7 @@ const ManageCards = ({ navigation }) => {
     <>
       <StatusBar barStyle="dark-content" />
       <Modal visible={visible}>
-        <SafeAreaView>
+        <SafeAreaView style={{ flex: 1 }}>
           <View>
             <TouchableOpacity onPress={hideModal} style={styles.xicon}>
               <XIcon />
@@ -59,7 +60,17 @@ const ManageCards = ({ navigation }) => {
                   <TextInput style={styles.formInput} placeholder="123" />
                 </View>
               </View>
-
+              <TouchableOpacity
+                onPress={() => navigation.navigate('BillingAddress')}
+                style={{
+                  width: '100%',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginVertical: 10
+                }}>
+                <Ionicons name="add-circle-outline" size={24} />
+                <Text style={{ fontWeight: 'bold' }}>Billing address.</Text>
+              </TouchableOpacity>
               <Text style={styles.policyText}>
                 By clicking the button below you agree to our Terms, Privacy
                 Policy and Cookie Policy.

@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import Icon2 from 'react-native-vector-icons/EvilIcons'
 import Home from '../screens/Home/Home.screen'
 import Profile from '../screens/Profile/Profile.screen'
-import ManageCards from '../screens/ManageCards/ManageCards.screen'
+import ManageCards from './manageCardsStack'
 import CustomDrawer from './drawer'
 import SecurityStack from './securityStack'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -20,6 +20,7 @@ import Moon from '../assets/images/Moon'
 import HomeScreen from './homeStack'
 import UpcomingRepaymentsScreen from './upcomingRequestStack';
 import TransactionsScreen from './transactionsStack'
+import Social from '../screens/Social';
 
 const Drawer = createDrawerNavigator()
 const Stack = createStackNavigator()
@@ -79,7 +80,7 @@ const MainNavigation = () => {
         />
         <Drawer.Screen
           name="Social"
-          component={Home}
+          component={Social}
           options={{
             title: 'Social',
             drawerIcon: ({ focused, size }) => <Instagram />
