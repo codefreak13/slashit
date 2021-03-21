@@ -21,12 +21,15 @@ import HomeScreen from './homeStack'
 import UpcomingRepaymentsScreen from './upcomingRequestStack';
 import TransactionsScreen from './transactionsStack'
 import Social from '../screens/Social';
-
+import AuthStack from './authStack';
 const Drawer = createDrawerNavigator()
 const Stack = createStackNavigator()
 const MainNavigation = () => {
+  const user = true
   return (
     <NavigationContainer>
+      {
+        user ? <AuthStack/> : 
       <Drawer.Navigator
         initialRouteName="Home"
         drawerContent={props => <CustomDrawer {...props} />}>
@@ -94,13 +97,7 @@ const MainNavigation = () => {
             drawerIcon: ({ focused, size }) => <Moon />
           }}
         />
-      </Drawer.Navigator>
-      {/* <Stack.Navigator>
-        <Stack.Screen
-          name="UpcomingRepaymentsScreen"
-          component={UpcomingRepaymentsScreen}
-        />
-      </Stack.Navigator> */}
+      </Drawer.Navigator>}
     </NavigationContainer>
   )
 }
