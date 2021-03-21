@@ -4,7 +4,7 @@ import {
   StatusBar,
   Text,
   View,
-  TouchableOpacity
+  ScrollView
 } from 'react-native'
 import BackIcon from '../../../assets/images/BackIcon'
 import Button from '../../../components/Button'
@@ -23,6 +23,7 @@ const index = ({ navigation }) => {
         navigation={navigation}
         title="Order #2234765"
       />
+      <ScrollView>
       <SafeAreaView style={styles.container}>
         <View style={styles.top}>
           <Text style={styles.boldText}>Nike Store</Text>
@@ -51,6 +52,7 @@ const index = ({ navigation }) => {
         />
         </View>
       </SafeAreaView>
+      </ScrollView>
     </>
   )
 }
