@@ -1,11 +1,12 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { SafeAreaView, Text, View, TouchableOpacity } from 'react-native'
 import { Formik } from 'formik'
 import * as yup from 'yup'
+import {AuthContext} from '../../../context/authContext';
 import BaseInput from '../../../components/BaseInput'
 import Button from '../../../components/Button'
 import styles from '../styles'
-
+import {WToast} from 'react-native-smart-tip'
 
 const validationSchema = yup.object().shape({
   email: yup.string().email().required('This field is required.'),
@@ -15,7 +16,30 @@ const initialValues = {
   email: '',
   password: ''
 }
+const show = (msg) => {
+  const toastOpts = {
+      data: msg,
+      textColor: '#ffffff',
+      backgroundColor: '#444444',
+      duration: WToast.duration.LONG, //1.SHORT 2.LONG
+      position: WToast.position.TOP, // 1.TOP 2.CENTER 3.BOTTOM
+  }
+  
+  WToast.show(toastOpts)
+} 
 const index = ({navigation}) => {
+  const {signIn} = useContext(AuthContext);
+  const check = ({email, password}) => {
+    if(email === "test@gmail.com"  && password === "12345"){
+      signIn('d23nh6890knsaweeee', email)
+    }else if(email !== "test@gmail.com"){
+      show("This email does not exist!")
+    }else if(password !== "12345"){
+      show("Password is incorrect")
+    }else{
+      show("Check yor login credentials")
+    }
+  }
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.slashit}>
@@ -24,7 +48,7 @@ const index = ({navigation}) => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={values => console.log(values)}>
+        onSubmit={values => check(values)}>
         {({
           values,
           handleBlur,
