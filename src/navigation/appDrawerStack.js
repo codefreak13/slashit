@@ -24,12 +24,10 @@ import Social from '../screens/Social';
 import AuthStack from './authStack';
 const Drawer = createDrawerNavigator()
 const Stack = createStackNavigator()
-const MainNavigation = () => {
+const AppNavigation = () => {
   const user = true
   return (
-    <NavigationContainer>
-      {
-        user ? <AuthStack/> : 
+    
       <Drawer.Navigator
         initialRouteName="Home"
         drawerContent={props => <CustomDrawer {...props} />}>
@@ -97,9 +95,8 @@ const MainNavigation = () => {
             drawerIcon: ({ focused, size }) => <Moon />
           }}
         />
-      </Drawer.Navigator>}
-    </NavigationContainer>
+      </Drawer.Navigator> 
   )
 }
 
-export default MainNavigation
+export default AppNavigation

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import {
   DrawerContentScrollView,
@@ -7,10 +7,11 @@ import {
 import Icon3 from 'react-native-vector-icons/FontAwesome5'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { useNavigation } from '@react-navigation/native'
+import {AuthContext} from '../context/authContext';
 const CustomDrawer = props => {
   const navigation = props.navigation
   const result = 32
+  const {signOut} = useContext(AuthContext);
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.profileContainer}>
@@ -39,6 +40,9 @@ const CustomDrawer = props => {
 
       <View style={styles.footer}>
         <Text>Credit limit NGN 4000</Text>
+        <TouchableOpacity onPress={signOut}  style={{marginTop:15}}>
+          <Text>Sign Out</Text>
+        </TouchableOpacity>
       </View>
     </DrawerContentScrollView>
   )
