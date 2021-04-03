@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import {
   SafeAreaView,
   View,
@@ -11,12 +11,12 @@ import {
   TouchableWithoutFeedback
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
+import AsyncStorage from '@react-native-community/async-storage'
 import styles from './Home.style'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Icon2 from 'react-native-vector-icons/Feather'
 import CaptureArea from '../../assets/images/CaptureArea'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
-import { useEffect } from 'react'
 import Button from '../../components/Button'
 import Card from '../../components/Card/Card.screen'
 import Dots from '../../components/dots'
@@ -24,17 +24,26 @@ import PayModal from './payModal'
 import PinModal from './pinModal'
 import SuccessModal from '../../components/SuccessModal'
 import LButton from '../../components/LinearGradientButton'
+
 import { getStoredState } from 'redux-persist'
 const Home = ({ navigation }) => {
   const [currentTab, setCurrentTab] = useState('in_3')
+  const [image, setImage] = useState('')
   const [modals, setModals] = useState({
     showPayModal: false,
     showPinModal: false,
     showSuccessModal: false
   })
   const { showPayModal, showPinModal, showSuccessModal } = modals
-  const handleImageResponse = data => {
+  const handleImageResponse = async data => {
     console.log('The data', data)
+    try{
+      const image = await AsyncStorage.setItem('image', data.uri)
+      image !== null || image !== undefined ? setImage(data.uri) : null
+    }catch(e){
+      console.log(e, 'error')
+    }
+    
   }
 
   const handleTabChange = data => {
@@ -93,7 +102,7 @@ const Home = ({ navigation }) => {
       id: 'with_card',
       title: 'Pay with card',
       data: (
-        <View style={[styles.captureIcon, { marginTop: 0 }]}>
+        <View style={[styles.captureIcon]}>
           <Text style={styles.payWith}>Pay with 5342****56732</Text>
           <View style={styles.cardHolder}>
             <Card />
@@ -108,7 +117,18 @@ const Home = ({ navigation }) => {
       )
     }
   ]
-
+  const getImage = async () => {
+    try {
+      const image = await AsyncStorage.getItem('image')
+      console.log(image)
+      setImage(image)
+    }catch(e){
+      console.log(e, 'error')
+    }
+  }
+useEffect(()=>{
+ getImage()
+}, [])
   return (
     <>
       <StatusBar barStyle="light-content" />
@@ -123,18 +143,25 @@ const Home = ({ navigation }) => {
               onPress={() =>
                 launchImageLibrary({ mediaType: 'photo' }, handleImageResponse)
               }>
-              <Image
+                {
+                  image ? <Image
+                  style={styles.profile}
+                  source={{
+                    uri: image
+                  }}
+                /> : <Image
                 style={styles.profile}
-                source={{
-                  uri: 'https://reactnative.dev/img/tiny_logo.png'
-                }}
+                source={require('../../assets/images/visa.jpeg')}
               />
+                }
+              
             </TouchableOpacity>
           </View>
-          <ScrollView
+          <View
             style={styles.scrollContent}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}>
+            // horizontal={true}
+            // showsHorizontalScrollIndicator={false}
+            >
             {availbaleTabs.map((tab, key) => (
               <LinearGradient
                 key={key}
@@ -147,7 +174,7 @@ const Home = ({ navigation }) => {
                 </TouchableOpacity>
               </LinearGradient>
             ))}
-          </ScrollView>
+          </View>
 
           {availbaleTabs.filter(x => x.id == currentTab)[0].data}
         </SafeAreaView>

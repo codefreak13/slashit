@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native'
 
 export default StyleSheet.create({
-  container: {  flex: 1, paddingHorizontal: 15 },
+  container: {  flex: 1 },
   slashit: { fontSize: 30, marginVertical: 30, color: '#673AB7' },
   boldText: {
     marginVertical: 20,

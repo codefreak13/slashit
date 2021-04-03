@@ -6,7 +6,6 @@ export default StyleSheet.create({
         alignItems: 'center',
         height: 40,
         marginBottom: 10,
-        // backgroundColor: 'red'
     },
     navCol: {
         width: '33.3%',

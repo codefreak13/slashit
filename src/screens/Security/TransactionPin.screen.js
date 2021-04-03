@@ -12,7 +12,7 @@ import XIcon from '../../assets/images/XIcon'
 import Modal from '../../components/Modal/Modal.screen'
 import NavHeader from '../../components/NavHeader/NavHeader.screen'
 import styles from './Security.style'
-
+import AntDesign from 'react-native-vector-icons/AntDesign' 
 const List = ({ text, onPress }) => (
   <TouchableOpacity style={styles.list} onPress={onPress}>
     <Text style={styles.listItem}>{text}</Text>
@@ -39,7 +39,7 @@ const TransactionPin = ({ navigation }) => {
         <SafeAreaView>
           <View>
             <TouchableOpacity onPress={hidePinModal} style={styles.xicon}>
-              <XIcon />
+            <AntDesign name="close" size={24} color="#000"/>
             </TouchableOpacity>
 
             <View style={styles.container}>
@@ -65,7 +65,7 @@ const TransactionPin = ({ navigation }) => {
         <SafeAreaView>
           <View>
             <TouchableOpacity onPress={hideEditPinModal} style={styles.xicon}>
-              <XIcon />
+            <AntDesign name="close" size={24} color="#000"/>
             </TouchableOpacity>
 
             <View style={styles.container}>

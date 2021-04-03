@@ -9,7 +9,7 @@ import {
   TextInput
 } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import XIcon from '../../assets/images/XIcon'
+import AntDesign from 'react-native-vector-icons/AntDesign'
 import Card from '../../components/Card/Card.screen'
 import Modal from '../../components/Modal/Modal.screen'
 import NavHeader from '../../components/NavHeader/NavHeader.screen'
@@ -28,7 +28,7 @@ const ManageCards = ({ navigation }) => {
         <SafeAreaView style={{ flex: 1 }}>
           <View>
             <TouchableOpacity onPress={hideModal} style={styles.xicon}>
-              <XIcon />
+            <AntDesign name="close" size={24} color="#000"/>
             </TouchableOpacity>
 
             <View style={styles.container}>
@@ -86,7 +86,7 @@ const ManageCards = ({ navigation }) => {
 
       <SafeAreaView>
         <NavHeader
-          rightSection={XIcon}
+          close
           navigation={navigation}
           title="Manage Cards"
         />
@@ -102,7 +102,7 @@ const ManageCards = ({ navigation }) => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.btn} onPress={showModal}>
+          <TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate("AddNewCard")}>
             <View>
               <Text style={styles.btnText}>Add a new card</Text>
             </View>

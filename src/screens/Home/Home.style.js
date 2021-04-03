@@ -5,14 +5,17 @@ export default StyleSheet.create({
     backgroundColor: '#BE61CE',
     height: Dimensions.get('screen').height
   },
-  scrollContent: {},
+  scrollContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%'
+  },
   scrollButton: {
     height: 31,
-    width: 130,
+    width: '27%',
     backgroundColor: '#673AB7',
     justifyContent: 'center',
     borderRadius: 40,
-    marginLeft: 20
   },
   scrollText: {
     color: '#ffffff',
@@ -28,6 +31,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
     width: Dimensions.get('screen').width - 20,
     height: 356,
+    
   },
   profile: {
     width: 30,

@@ -6,6 +6,7 @@ import {AuthContext} from '../../../context/authContext';
 import BaseInput from '../../../components/BaseInput'
 import Button from '../../../components/Button'
 import styles from '../styles'
+import {Wrapper} from '../../../components';
 import {WToast} from 'react-native-smart-tip'
 
 const validationSchema = yup.object().shape({
@@ -41,7 +42,7 @@ const index = ({navigation}) => {
     }
   }
   return (
-    <SafeAreaView style={styles.container}>
+    <Wrapper>
       <Text style={styles.slashit}>
         SlashIt
       </Text>
@@ -109,7 +110,7 @@ const index = ({navigation}) => {
           </>
         )}
       </Formik>
-    </SafeAreaView>
+    </Wrapper>
   )
 }
 

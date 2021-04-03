@@ -6,6 +6,7 @@ import { Formik } from 'formik'
 import * as yup from 'yup'
 import BaseInput from '../../../components/BaseInput'
 import Button from '../../../components/Button'
+import {Wrapper} from '../../../components'
 import styles from '../styles'
 
 
@@ -21,9 +22,8 @@ const initialValues = {
 const BackIcon = () => <MaterialIcons name="keyboard-backspace" size={24} />
 const index = ({navigation}) => {
   return (
-    <>
+    <Wrapper>
       <NavHeader
-          rightSection={BackIcon}
           navigation={navigation}
           title=""
         />
@@ -74,7 +74,8 @@ const index = ({navigation}) => {
             <Text>Or</Text>
 
             <TouchableOpacity
-            onPress={()=>Linking.openURL(`https://www.slashit.me/register`)}
+            onPress={()=> navigation.navigate("BusinessAccountSignup")}
+            // onPress={()=>Linking.openURL(`https://www.slashit.me/register`)}
               style={{marginVertical: 20}}>
               <Text>
                 Sign up for a business account?{' '}
@@ -89,7 +90,7 @@ const index = ({navigation}) => {
       </Formik>
     </SafeAreaView>
 
-    </>
+    </Wrapper>
   )
 }
 

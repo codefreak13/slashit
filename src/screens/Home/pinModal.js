@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   SafeAreaView,
   StatusBar,
@@ -8,21 +8,62 @@ import {
   StyleSheet,
   TextInput
 } from 'react-native'
-import Ionicons from 'react-native-vector-icons/Ionicons' 
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import Modal from '../../components/Modal/Modal.screen'
-import LButton from '../../components/LinearGradientButton'
+import TouchID from 'react-native-touch-id'
+import { optionalConfigObject } from '../../utils/fingerPrintScannerConfig'
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input'
-const index = ({ navigation, visible, setModal, onClosePinModalOpenSuccessModal }) => {
+const index = ({
+  navigation,
+  visible,
+  setModal,
+  onClosePinModalOpenSuccessModal
+}) => {
+  const _pressHandler = () => {
+    console.log('hiiiii')
+    TouchID.authenticate(
+      'Scan your Fingerprint on the device scanner to continue',
+      optionalConfigObject
+    )
+      .then(success => {
+        console.log('Authenticated Successfully')
+        onClosePinModalOpenSuccessModal()
+      })
+      .catch(error => {
+        console.log('Authentication Failed')
+      })
+  }
+
+  useEffect(() => {
+    // check if device supports fingerPrint Auth
+    TouchID.isSupported(optionalConfigObject)
+      .then(biometryType => {
+        // Success code
+        if (biometryType === 'FaceID') {
+          console.log('FaceID is supported.')
+        } else {
+          console.log('TouchID is supported.')
+        }
+      })
+      .catch(error => {
+        // Failure code
+        console.log(error)
+      })
+  }, [])
   const [code, setCode] = useState('')
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <Modal transparent visible={visible}>
         <SafeAreaView style={styles.centeredView}>
-          <View style={{width: '100%'}}>
+          <View style={{ width: '100%' }}>
             <View style={styles.divider}>
-             <Text style={{fontSize: 16}}>	Pay <Text style={{fontWeight: 'bold'}}>₦15,000.00</Text> at Nike Store</Text>
-            </View> 
+              <Text style={{ fontSize: 16 }}>
+                {' '}
+                Pay <Text style={{ fontWeight: 'bold' }}>₦15,000.00</Text> at
+                Nike Store
+              </Text>
+            </View>
             <View style={styles.container}>
               <Text style={styles.codeTitleLabel}>Enter PIN</Text>
               <SmoothPinCodeInput
@@ -38,9 +79,12 @@ const index = ({ navigation, visible, setModal, onClosePinModalOpenSuccessModal 
               />
             </View>
             {/* <LButton title="Pay now" onPress={setModal}/> */}
-            <TouchableOpacity onPress={onClosePinModalOpenSuccessModal}  style={{alignItems: 'center', marginTop: 10 }}>
-          <Ionicons name="finger-print" size={40} />
-        </TouchableOpacity>
+            <TouchableOpacity
+              // onPress={onClosePinModalOpenSuccessModal}
+              onPress={()=>_pressHandler()}
+              style={{ alignItems: 'center', marginTop: 10 }}>
+              <Ionicons name="finger-print" size={40} />
+            </TouchableOpacity>
           </View>
         </SafeAreaView>
       </Modal>
@@ -64,8 +108,8 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2,
-    },
+      height: 2
+    }
   },
   divider: {
     width: '100%',

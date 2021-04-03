@@ -6,7 +6,7 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  TextInput
+  TextInput, 
 } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons' 
 import BackIcon from '../../../assets/images/BackIcon'; 
@@ -16,7 +16,7 @@ import styles from './styles'
 const index = ({ navigation }) => { 
 
   return (
-    <>
+    <SafeAreaView>
       <StatusBar barStyle="dark-content" />
 
       <NavHeader
@@ -32,7 +32,7 @@ const index = ({ navigation }) => {
           <Text style={styles.formLabel}>Name on Card</Text>
             <View style={styles.formInputContainer}>
               <TextInput
-                style={styles.formInput}
+                style={[styles.formInput, {height: 48}]}
                 placeholder="0000 0000 0000 0000"
               />
             </View>
@@ -48,13 +48,13 @@ const index = ({ navigation }) => {
 
           <View style={styles.formControl}>
             <View style={styles.formInputContainer}>
-              <TextInput style={styles.formInput} placeholder="Street Address" />
+              <TextInput style={[styles.formInput, {height: 48}]} placeholder="Street Address" />
             </View>
           </View>
 
           <View style={styles.formControl}>
             <View style={styles.formInputContainer}>
-              <TextInput style={styles.formInput} placeholder="City" />
+              <TextInput style={[styles.formInput, {height: 48}]} placeholder="City" />
             </View>
           </View>
 
@@ -68,7 +68,7 @@ const index = ({ navigation }) => {
 
           <View style={styles.formControl}>
             <View style={styles.formInputContainer}>
-              <TextInput style={styles.formInput} placeholder="Post Code" />
+              <TextInput style={[styles.formInput, {height: 48}]} placeholder="Post Code" />
             </View>
           </View>
 
@@ -78,7 +78,7 @@ const index = ({ navigation }) => {
         </View>
       </SafeAreaView>
       </ScrollView>
-    </>
+    </SafeAreaView>
   )
 }
 

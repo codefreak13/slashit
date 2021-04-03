@@ -8,9 +8,11 @@ import {
   Image
 } from 'react-native'
 import BackIcon from '../../assets/images/BackIcon'
+import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import NavHeader from '../../components/NavHeader/NavHeader.screen'
 import styles from './Profile.style'
 
+const EditIcon = () => <EvilIcons name="pencil" size={24}/>
 const Profile = ({ navigation }) => {
   const [profile, setProfile] = useState({
     name: 'Anna Appleseed',
@@ -22,7 +24,7 @@ const Profile = ({ navigation }) => {
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <NavHeader rightSection={BackIcon} navigation={navigation} />
+        <NavHeader rightSection={BackIcon} leftSection={EditIcon} leftSectionAction = {()=> navigation.navigate('EditProfile')} navigation={navigation} />
 
         <TouchableOpacity>
           <Image
