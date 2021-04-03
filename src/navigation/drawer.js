@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     borderTopWidth: 2,
-    marginTop: 100,
+    marginTop: 20,
     alignItems: 'center',
     padding: 20
   },

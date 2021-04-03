@@ -7,6 +7,7 @@ import ResetPassword from '../screens/Auth/ResetPassword'
 import VerifyPhone from '../screens/Auth/VerifyPhone' 
 import VerifyEmail from '../screens/Auth/VerifyEmail' 
 import SetNewPassword from '../screens/Auth/SetNewPassword' 
+import BusinessAccountSignup from '../screens/Auth/Signup/BusinessAccountSignup'
 const Stack = createStackNavigator()
 
 const index = () => {
@@ -18,7 +19,8 @@ const index = () => {
         <Stack.Screen name="ResetPassword" component={ResetPassword} /> 
         <Stack.Screen name="VerifyPhone" component={VerifyPhone} /> 
         <Stack.Screen name="VerifyEmail" component={VerifyEmail} /> 
-        <Stack.Screen name="SetNewPassword" component={SetNewPassword} /> 
+        <Stack.Screen name="SetNewPassword" component={SetNewPassword} />
+        <Stack.Screen name="BusinessAccountSignup" component={BusinessAccountSignup} />  
       </Stack.Navigator>
     );
   }

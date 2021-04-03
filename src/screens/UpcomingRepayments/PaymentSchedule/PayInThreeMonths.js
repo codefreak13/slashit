@@ -38,6 +38,9 @@ const index = ({ navigation }) => {
           onDateChange={setFirstInstallment}
           nextTitle={<AntDesign name="right" size={20} />}
           previousTitle={<AntDesign name="left" size={20} />}
+          initialDate={new Date(2021,8,8)}
+          showDayStragglers={true}
+          selectedStartDate={new Date(2021,8,8)}
         />
       )
     },
@@ -45,9 +48,12 @@ const index = ({ navigation }) => {
       title: 'Second Installment',
       calendar: (
         <CalendarPicker
-          onDateChange={setSecondInstallment}
+          onDateChange={setFirstInstallment}
           nextTitle={<AntDesign name="right" size={20} />}
           previousTitle={<AntDesign name="left" size={20} />}
+          initialDate={new Date(2021,9,9)}
+          showDayStragglers={true}
+          selectedStartDate={new Date(2021,9,9)}
         />
       )
     },
@@ -55,9 +61,12 @@ const index = ({ navigation }) => {
       title: 'Third Installment',
       calendar: (
         <CalendarPicker
-          onDateChange={setThirdInstallment}
+          onDateChange={setFirstInstallment}
           nextTitle={<AntDesign name="right" size={20} />}
           previousTitle={<AntDesign name="left" size={20} />}
+          initialDate={new Date(2021,10,10)}
+          showDayStragglers={true}
+          selectedStartDate={new Date(2021,10,10)}
         />
       )
     },

@@ -1,22 +1,42 @@
 import React from 'react'
-import { StyleSheet, SafeAreaView, Text, View, StatusBar } from 'react-native'
+import { Share, SafeAreaView, Text, View, StatusBar } from 'react-native'
 import BackIcon from '../../../assets/images/BackIcon'
 import Entypo from 'react-native-vector-icons/Entypo'
 import NavHeader from '../../../components/NavHeader/NavHeader.screen'
 import styles from './styles'
 import List from './transactionLists'
 import {useNavigation} from '@react-navigation/native';
+import {Wrapper} from '../../../components';
 const LS = () => <Entypo name="share" size={24} />
  
 const index = () => {
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+          'Slashit',
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
   const navigation = useNavigation()
   return (
-    <>
+    <Wrapper>
       <StatusBar barStyle="dark-content" />
       <NavHeader
         rightSection={BackIcon}
         leftSection={LS}
-        leftSectionAction={() => console.log('PaymentSchedule')}
+        leftSectionAction={() => onShare()}
         title="Transaction Details"
       />
       <SafeAreaView style={styles.container}>
@@ -28,7 +48,7 @@ const index = () => {
         <List label="Amount" value="NGN 200.00"/>
         <List label="Type" value="First Installments" last/>
       </SafeAreaView>
-    </>
+    </Wrapper>
   )
 }
 

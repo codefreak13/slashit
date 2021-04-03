@@ -4,7 +4,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input'
 import { Formik } from 'formik'
 import * as yup from 'yup'
-import BaseInput from '../../../components/BaseInput'
+import {Wrapper} from '../../../components';
 import NavHeader from '../../../components/NavHeader/NavHeader.screen'
 import Button from '../../../components/Button'
 import styles from '../styles'
@@ -15,13 +15,11 @@ const validationSchema = yup.object().shape({
 const initialValues = {
   code: ''
 }
-const BackIcon = () => <AntDesign name="close" size={40} color="#000" />
 const index = ({ navigation }) => {
   const [code, setCode] = useState('')
   return (
-    <>
-      <NavHeader rightSection={BackIcon} navigation={navigation} title="" />
-
+    <Wrapper>
+      <NavHeader close navigation={navigation} title="" />
       <SafeAreaView style={styles.container}>
         <Text style={[styles.boldText, { color: '#000' }]}>
           Verify your phone number
@@ -51,7 +49,7 @@ const index = ({ navigation }) => {
           }}
         />
       </SafeAreaView>
-    </>
+    </Wrapper>
   )
 }
 

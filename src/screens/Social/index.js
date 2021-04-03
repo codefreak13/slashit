@@ -11,26 +11,27 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import BackIcon from '../../assets/images/BackIcon'
 import Button from '../../components/Button'
 import NavHeader from '../../components/NavHeader/NavHeader.screen'
+import {Wrapper} from '../../components';
 import styles from './styles'
 const index = ({ navigation }) => {
   const [username, setUsername] = useState('')
 
   return (
-    <>
+    <Wrapper>
       <StatusBar barStyle="dark-content" />
       <NavHeader
         rightSection={BackIcon}
         navigation={navigation}
         title="Accounts"
       />
-      <SafeAreaView style={styles.container}>
+      <View>
         <View style={styles.flexCenter}>
           <View style={[styles.flexCenter, { flex: 2 }]}>
             <AntDesign name="instagram" size={24} color="#6262b7" />
             <Text style={{ marginLeft: 20 }}>Instagram</Text>
           </View>
           <TextInput
-            defaultValue="talk2dera"
+            defaultValue="manage_access"
             value={username}
             onChangeText={text => setUsername(text)}
             style={{ flex: 2 }}
@@ -48,9 +49,12 @@ const index = ({ navigation }) => {
           </Text>
           <Button
             title="Contine to"
-            onPress={() =>
-              Linking.openURL(`https://www.instagram.com/${username}/`)
-            }
+            onPress={() => navigation.navigate("InstagramPage", {
+              uri: `https://www.instagram.com/${username ? username : 'manage_access'}/`
+            })}
+            // onPress={() =>
+            //   Linking.openURL(`https://www.instagram.com/${username ? username : 'manage_access'}/`)
+            // }
             containerStyle={{
               width: '70%',
               alignSelf: 'center',
@@ -58,8 +62,8 @@ const index = ({ navigation }) => {
             }}
           />
         </View>
-      </SafeAreaView>
-    </>
+      </View>
+    </Wrapper>
   )
 }
 

@@ -6,6 +6,8 @@ import * as yup from 'yup'
 import BaseInput from '../../../components/BaseInput'
 import NavHeader from '../../../components/NavHeader/NavHeader.screen'
 import Button from '../../../components/Button'
+import {Wrapper} from '../../../components';
+
 import styles from '../styles'
 
 
@@ -17,11 +19,10 @@ const initialValues = {
   password: '',
   confirmPassword: ''
 }
-const BackIcon = () => <AntDesign name="close" size={40} color="#000" />
 const index = ({navigation}) => {
   return (
-    <>
-    <NavHeader rightSection={BackIcon} navigation={navigation} title="" />
+    <Wrapper>
+    <NavHeader   navigation={navigation} title="" />
 
     <SafeAreaView style={styles.container}>
       <Text style={[styles.boldText, {color:'#000'}]}>
@@ -71,7 +72,7 @@ const index = ({navigation}) => {
         )}
       </Formik>
     </SafeAreaView>
-    </>
+    </Wrapper>
   )
 }
 

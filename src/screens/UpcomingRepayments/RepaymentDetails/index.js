@@ -9,6 +9,7 @@ import {
 import BackIcon from '../../../assets/images/BackIcon'
 import Button from '../../../components/Button'
 import NavHeader from '../../../components/NavHeader/NavHeader.screen'
+import {Wrapper} from '../../../components';
 import styles from './styles'
 import UnPaidInstallment from './unpaidInstallment'
 import PaidInstallment from './paidInstallment'
@@ -16,14 +17,14 @@ import PaidInstallment from './paidInstallment'
 const index = ({ navigation }) => {
   const [isChecked, setIsChecked] = useState(false)
   return (
-    <>
+    <Wrapper>
       <StatusBar barStyle="dark-content" />
       <NavHeader
         rightSection={BackIcon}
         navigation={navigation}
         title="Order #2234765"
       />
-      <ScrollView>
+      <ScrollView contentContainerStyle={{flex: 1}}>
       <SafeAreaView style={styles.container}>
         <View style={styles.top}>
           <Text style={styles.boldText}>Nike Store</Text>
@@ -41,7 +42,7 @@ const index = ({ navigation }) => {
           </Text>
           <Text>Shipping Address_</Text>
         </View>
-        <View style={{flex: 3}}>
+        <View style={{flex: 3,justifyContent: 'space-around'}}>
         <PaidInstallment navigateTo="TransactionDetails"/>
         <UnPaidInstallment name="Second" navigateTo="TransactionDetails"/>
         <UnPaidInstallment name="Third" navigateTo="TransactionDetails"/>
@@ -53,7 +54,7 @@ const index = ({ navigation }) => {
         </View>
       </SafeAreaView>
       </ScrollView>
-    </>
+    </Wrapper>
   )
 }
 
