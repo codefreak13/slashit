@@ -35,18 +35,14 @@ const Home = ({ navigation }) => {
     showSuccessModal: false
   })
   const { showPayModal, showPinModal, showSuccessModal } = modals
-  const handleImageResponse = async data => {
-    console.log('The data', data)
-    try{
-      const image = await AsyncStorage.setItem('image', data.uri)
-      image !== null || image !== undefined ? setImage(data.uri) : null
-    }catch(e){
-      console.log(e, 'error')
-    }
-    
-  }
+  
 
   const handleTabChange = data => {
+    const item = availbaleTabs.filter(item => item.id === data);
+    console.log(item)
+    const g = availbaleTabs.splice(2,0,item);
+    console.log(g.length, 'll')
+    // console.log(data)
     setCurrentTab(data)
   }
   const togglePayModal = () =>
@@ -117,10 +113,19 @@ const Home = ({ navigation }) => {
       )
     }
   ]
+
+  const handleImageResponse = async data => {
+    try{
+      const image = await AsyncStorage.setItem('image', data.uri)
+      image !== null || image !== undefined ? setImage(data.uri) : null
+    }catch(e){
+      console.log(e, 'error')
+    }
+    
+  }
   const getImage = async () => {
     try {
       const image = await AsyncStorage.getItem('image')
-      console.log(image)
       setImage(image)
     }catch(e){
       console.log(e, 'error')
