@@ -6,7 +6,8 @@ import {
   StatusBar,
   TouchableOpacity,
   Alert,
-  ScrollView,
+  useColorScheme,
+  Appearance,
   Image,
   TouchableWithoutFeedback
 } from 'react-native'
@@ -24,7 +25,8 @@ import PayModal from './payModal'
 import PinModal from './pinModal'
 import SuccessModal from '../../components/SuccessModal'
 import LButton from '../../components/LinearGradientButton'
-
+import {Text as RNText} from '../../components'
+// import {AppearanceProvider} from 'react-native-appearance';
 import { getStoredState } from 'redux-persist'
 const Home = ({ navigation }) => {
   const [currentTab, setCurrentTab] = useState('in_3')
@@ -134,6 +136,10 @@ const Home = ({ navigation }) => {
 useEffect(()=>{
  getImage()
 }, [])
+console.log(Appearance, 'kkk')
+const colorScheme = useColorScheme();
+// const colorScheme = Appearance.getColorScheme();
+console.log(colorScheme)
   return (
     <>
       <StatusBar barStyle="light-content" />
@@ -180,8 +186,8 @@ useEffect(()=>{
               </LinearGradient>
             ))}
           </View>
-
-          {availbaleTabs.filter(x => x.id == currentTab)[0].data}
+              <RNText styles={{color:'#fff'}}>Hello</RNText>
+          {/* {availbaleTabs.filter(x => x.id == currentTab)[0].data} */}
         </SafeAreaView>
       </View>
     </>

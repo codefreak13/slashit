@@ -6,7 +6,7 @@ export default  StyleSheet.create({
     paddingHorizontal: 10,
   },
   list: {
-    // backgroundColor: 'red',
+    // backgroundColor: '#DAE1E7',
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',

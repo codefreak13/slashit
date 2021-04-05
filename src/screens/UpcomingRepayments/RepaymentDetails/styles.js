@@ -2,8 +2,7 @@ import { StyleSheet } from 'react-native'
 export default styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingVertical: 10
+    paddingHorizontal: 20
   },
   top: {
     flex: 1,
@@ -20,7 +19,7 @@ export default styles = StyleSheet.create({
     backgroundColor: '#303030',
     marginVertical: 6
   },
-  prod: {flex: 1.5, marginVertical: 15, paddingVertical: 20 },
+  prod: {flex: 2, marginVertical: 15 },
 
   paidContainer: {
     borderLeftWidth: 5,

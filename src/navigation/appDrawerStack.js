@@ -1,34 +1,24 @@
 import React from 'react'
-import { createDrawerNavigator } from '@react-navigation/drawer'
-import { NavigationContainer } from '@react-navigation/native'
+import { createDrawerNavigator } from '@react-navigation/drawer' 
 import Icon from 'react-native-vector-icons/AntDesign'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
-import Entypo from 'react-native-vector-icons/Entypo'
+import { useTheme } from '@react-navigation/native'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import Home from '../screens/Home/Home.screen'
+ 
 import Profile from './profileStack'
 import ManageCards from './manageCardsStack'
 import CustomDrawer from './drawer'
 import SecurityStack from './securityStack'
-import { createStackNavigator } from '@react-navigation/stack'
-import Avatar from '../assets/images/Avatar'
-import { View } from 'react-native'
-import Loop from '../assets/images/Loop'
-import Cash from '../assets/images/Cash'
-import Card from '../assets/images/Card'
-import Lock from '../assets/images/Lock'
-import Instagram from '../assets/images/Instagram'
-import Moon from '../assets/images/Moon'
+import { createStackNavigator } from '@react-navigation/stack' 
 import HomeScreen from './homeStack'
 import UpcomingRepaymentsScreen from './upcomingRequestStack'
 import TransactionsScreen from './transactionsStack'
-import Social from './socialStack'
-import AuthStack from './authStack'
+import Social from './socialStack' 
 const Drawer = createDrawerNavigator()
 const Stack = createStackNavigator()
 const AppNavigation = () => {
-  const user = true
+  const { colors } = useTheme() 
   return (
     <Drawer.Navigator
       initialRouteName="Home"
@@ -38,7 +28,7 @@ const AppNavigation = () => {
         component={HomeScreen}
         options={{
           drawerIcon: ({ focused, size }) => (
-            <Icon name="home" size={24} style={{ marginLeft: 10 }} />
+            <Icon name="home" size={24} color={colors.text} style={{ marginLeft: 10 }} />
           )
         }}
       />
@@ -47,7 +37,7 @@ const AppNavigation = () => {
         component={Profile}
         options={{
           drawerIcon: ({ focused, size }) => (
-            <EvilIcons name="user" size={34} style={{marginLeft: 6}} />
+            <EvilIcons name="user" size={34} color={colors.text} style={{marginLeft: 6}} />
           )
         }}
       />
@@ -57,7 +47,7 @@ const AppNavigation = () => {
         options={{
           title: 'Upcoming Repayments',
           drawerIcon: ({ focused, size }) => (
-            <AntDesign name="sync" size={22} style={{marginLeft: 12}}/>
+            <AntDesign name="sync" size={22} color={colors.text} style={{marginLeft: 12}}/>
           )
         }}
       />
@@ -67,7 +57,7 @@ const AppNavigation = () => {
         options={{
           title: 'Transactions',
           drawerIcon: ({ focused, size }) => (
-            <MaterialCommunityIcons name="cash-multiple" size={25} style={{marginLeft: 12}}/>
+            <MaterialCommunityIcons name="cash-multiple" color={colors.text} size={25} style={{marginLeft: 12}}/>
           )
         }}
       />
@@ -77,7 +67,7 @@ const AppNavigation = () => {
         options={{
           title: 'Manage Cards',
           drawerIcon: ({ focused, size }) => (
-            <EvilIcons name="credit-card" size={28} style={{marginLeft: 12}}/>
+            <EvilIcons name="credit-card" size={28} color={colors.text} style={{marginLeft: 12}}/>
           )
         }}
       />
@@ -87,7 +77,7 @@ const AppNavigation = () => {
         options={{
           title: 'Security',
           drawerIcon: ({ focused, size }) => (
-            <Entypo name="lock" size={25} style={{marginLeft: 12}}/>
+            <AntDesign name="lock" size={25} color={colors.text} style={{marginLeft: 12}}/>
           )
         }}
       />
@@ -97,11 +87,11 @@ const AppNavigation = () => {
         options={{
           drawerIcon: ({ focused, size }) => (
             <AntDesign
-            name="instagram" size={25} style={{marginLeft: 12}}/>
+            name="instagram" size={25} color={colors.text} style={{marginLeft: 12}}/>
           )
         }}
       />
-       <Drawer.Screen
+       {/* <Drawer.Screen
         name="DarkMode"
         component={Home}
         options={{
@@ -111,7 +101,7 @@ const AppNavigation = () => {
             name="moon" size={25} style={{marginLeft: 12}}/>
           )
         }}
-      /> 
+      />  */}
     </Drawer.Navigator>
   )
 }
