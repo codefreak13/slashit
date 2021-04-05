@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {
   SafeAreaView,
-  StatusBar,
-  Text,
+  StatusBar, 
   View,
   TouchableOpacity,
   StyleSheet,
@@ -11,6 +10,8 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Modal from '../../components/Modal/Modal.screen'
 import TouchID from 'react-native-touch-id'
+import {useTheme} from '@react-navigation/native'
+import {Text} from '../../components'
 import { optionalConfigObject } from '../../utils/fingerPrintScannerConfig'
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input'
 const index = ({
@@ -19,6 +20,7 @@ const index = ({
   setModal,
   onClosePinModalOpenSuccessModal
 }) => {
+  const {colors} = useTheme()
   const _pressHandler = () => {
     console.log('hiiiii')
     TouchID.authenticate(
@@ -55,7 +57,7 @@ const index = ({
     <>
       <StatusBar barStyle="dark-content" />
       <Modal transparent visible={visible}>
-        <SafeAreaView style={styles.centeredView}>
+        <SafeAreaView style={[styles.centeredView, {backgroundColor: colors.listCard}]}>
           <View style={{ width: '100%' }}>
             <View style={styles.divider}>
               <Text style={{ fontSize: 16 }}>
@@ -83,7 +85,7 @@ const index = ({
               // onPress={onClosePinModalOpenSuccessModal}
               onPress={()=>_pressHandler()}
               style={{ alignItems: 'center', marginTop: 10 }}>
-              <Ionicons name="finger-print" size={40} />
+              <Ionicons color={colors.icons} name="finger-print" size={40} />
             </TouchableOpacity>
           </View>
         </SafeAreaView>
@@ -127,8 +129,7 @@ const styles = StyleSheet.create({
     // paddingTop: 100,
     paddingHorizontal: 50
   },
-  codeTitleLabel: {
-    color: '#212121',
+  codeTitleLabel: { 
     fontSize: 18,
     marginVertical: 12
   }

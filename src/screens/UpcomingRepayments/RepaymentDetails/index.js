@@ -1,32 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import {
   SafeAreaView,
-  StatusBar,
-  Text,
+  StatusBar, 
   View,
   ScrollView
 } from 'react-native'
 import BackIcon from '../../../assets/images/BackIcon'
 import Button from '../../../components/Button'
 import NavHeader from '../../../components/NavHeader/NavHeader.screen'
-import {Wrapper} from '../../../components';
+import {Wrapper, Text} from '../../../components';
+import {useTheme} from '@react-navigation/native'
 import styles from './styles'
 import UnPaidInstallment from './unpaidInstallment'
 import PaidInstallment from './paidInstallment'
 
 const index = ({ navigation }) => {
   const [isChecked, setIsChecked] = useState(false)
+  const {colors} = useTheme()
   return (
     <Wrapper>
       <StatusBar barStyle="dark-content" />
       <NavHeader
-        rightSection={BackIcon}
+        backIcon
         navigation={navigation}
         title="Order #2234765"
       />
       <ScrollView contentContainerStyle={{flex: 1}}>
       <SafeAreaView style={styles.container}>
-        <View style={styles.top}>
+        <View style={[styles.top, {backgroundColor:colors.card }]}>
           <Text style={styles.boldText}>Nike Store</Text>
           <Text style={{ fontSize: 12 }}>13 Jun 2020</Text>
           <View style={styles.divider} />

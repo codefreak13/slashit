@@ -1,9 +1,7 @@
 import React, {useState} from 'react'
 import {
   Linking,
-  Text,
   View,
-  SafeAreaView,
   TouchableOpacity,
   ScrollView
 } from 'react-native'
@@ -14,7 +12,8 @@ import { Formik } from 'formik'
 import * as yup from 'yup'
 import BaseInput from '../../../components/BaseInput'
 import Button from '../../../components/Button'
-import { Wrapper } from '../../../components'
+import {Wrapper, Text} from '../../../components'; 
+import {useTheme} from '@react-navigation/native' 
 import styles from '../styles'
 
 const validationSchema = yup.object().shape({
@@ -35,7 +34,9 @@ const initialValues = {
 }
 
 const BackIcon = () => <MaterialIcons name="keyboard-backspace" size={24} />
+
 const index = ({ navigation }) => {
+  const {colors} = useTheme()
   const [show, setShow] = useState(false)
   return (
     <Wrapper>
@@ -43,7 +44,7 @@ const index = ({ navigation }) => {
         <NavHeader rightSection={BackIcon} navigation={navigation} title="" />
 
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Text style={styles.boldText}>Create a Shopper account</Text>
+          <Text style={{...styles.boldText, color: colors.primary}}>Create a Shopper account</Text>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -132,7 +133,7 @@ const index = ({ navigation }) => {
                   onPress={() => navigation.navigate('BusinessAccountSignin')}>
                   <Text>
                     Already have an account?{' '}
-                    <Text style={{ fontWeight: 'bold', color: '#673AB7' }}>
+                    <Text style={{ fontWeight: 'bold', color: colors.primary }}>
                       Sign in
                     </Text>
                   </Text>

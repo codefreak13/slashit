@@ -1,13 +1,14 @@
 import React, {useContext} from 'react'
-import { SafeAreaView, Text, View, TouchableOpacity } from 'react-native'
+import {  TouchableOpacity } from 'react-native'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import {AuthContext} from '../../../context/authContext';
 import BaseInput from '../../../components/BaseInput'
 import Button from '../../../components/Button'
 import styles from '../styles'
-import {Wrapper} from '../../../components';
+import {Wrapper, Text} from '../../../components';
 import {WToast} from 'react-native-smart-tip'
+import {useTheme} from '@react-navigation/native' 
 
 const validationSchema = yup.object().shape({
   email: yup.string().email().required('This field is required.'),
@@ -29,6 +30,7 @@ const show = (msg) => {
   WToast.show(toastOpts)
 } 
 const index = ({navigation}) => {
+  const {colors} = useTheme()
   const {signIn} = useContext(AuthContext);
   const check = ({email, password}) => {
     if(email === "test@gmail.com"  && password === "12345"){
@@ -43,7 +45,7 @@ const index = ({navigation}) => {
   }
   return (
     <Wrapper>
-      <Text style={styles.slashit}>
+      <Text style={{...styles.slashit, color: colors.primary}}>
         SlashIt
       </Text>
       <Formik
@@ -68,7 +70,7 @@ const index = ({navigation}) => {
               placeholder="Email"
             />
             <BaseInput
-            secureTextEntry
+              secureTextEntry
               value={values.password}
               onChangeText={handleChange('password')}
               errors={errors.password}
@@ -78,7 +80,7 @@ const index = ({navigation}) => {
             />
              <TouchableOpacity onPress={()=>navigation.navigate("ResetPassword")}>
             <Text
-              style={styles.boldText}>
+              style={{...styles.boldText,  color: colors.primary}}>
               Forgot Password?
             </Text>
             </TouchableOpacity>
@@ -88,9 +90,9 @@ const index = ({navigation}) => {
               containerStyle={{ borderRadius: 50 }}
             />
             <Button
-            onPress={()=> navigation.navigate("Signup")}
+             onPress={()=> navigation.navigate("Signup")}
               title="Sign up"
-              textStyle={{ color: '#673AB7' }}
+              textStyle={{ color:   colors.primary }}
               containerStyle={{
                 borderRadius: 50,
                 backgroundColor: 'transparent'
@@ -102,7 +104,7 @@ const index = ({navigation}) => {
               style={styles.bizAcc}>
               <Text>
                 Business account?{' '}
-                <Text style={{ fontWeight: 'bold', color: '#673AB7' }}>
+                <Text style={{ fontWeight: 'bold', color:  colors.primary }}>
                   Sign in here
                 </Text>
               </Text>

@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import {
   SafeAreaView,
-  StatusBar,
-  Text,
+  StatusBar, 
   View,
   TouchableOpacity,
   Image
@@ -13,7 +12,7 @@ import BackIcon from '../../assets/images/BackIcon'
 import BaseInput from '../../components/BaseInput'
 import NavHeader from '../../components/NavHeader/NavHeader.screen'
 import styles from './Profile.style'
-
+import {Text, Wrapper} from '../../components'
 const validationSchema = yup.object().shape({
   name: yup.string().required('This field is required.'),
   address: yup.string().required('This field is required.'),
@@ -24,7 +23,7 @@ const initialValues = {
   email: '',
   password: ''
 }
-const EditIcon = () => <Text>Save</Text>
+const EditIcon = (color) => <Text>Save</Text>
 const EditProfile = ({ navigation }) => {
   const [profile, setProfile] = useState({
     name: 'Anna Appleseed',
@@ -33,16 +32,16 @@ const EditProfile = ({ navigation }) => {
     email: 'turtle@gmail.com'
   })
   return (
-    <>
+    <Wrapper>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <NavHeader
-          rightSection={BackIcon}
+          backIcon
           leftSection={EditIcon}
           leftSectionAction={() => console.log('object')}
           navigation={navigation}
         />
-
+      
         <TouchableOpacity>
           <Image
             style={styles.profile}
@@ -79,7 +78,7 @@ const EditProfile = ({ navigation }) => {
                 name={values.name}
                 placeholder="Name"
                 style={styles.style}
-								inputStyle={styles.listData}
+                inputStyle={styles.listData}
               />
               <BaseInput
                 value={values.address}
@@ -89,7 +88,7 @@ const EditProfile = ({ navigation }) => {
                 name={values.address}
                 placeholder="Address"
                 style={styles.style}
-								inputStyle={styles.listData}
+                inputStyle={styles.listData}
               />
               <BaseInput
                 value={values.phone}
@@ -99,7 +98,7 @@ const EditProfile = ({ navigation }) => {
                 name={values.phone}
                 placeholder="Phone"
                 style={styles.style}
-								inputStyle={styles.listData}
+                inputStyle={styles.listData}
               />
               <BaseInput
                 value={values.email}
@@ -114,10 +113,8 @@ const EditProfile = ({ navigation }) => {
             </>
           )}
         </Formik>
-
-        
       </SafeAreaView>
-    </>
+    </Wrapper>
   )
 }
 

@@ -2,21 +2,22 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import {
   SafeAreaView,
-  StatusBar,
-  Text,
+  StatusBar, 
   View,
   TouchableOpacity
 } from 'react-native'
 import BackIcon from '../../assets/images/BackIcon'
 import NavHeader from '../../components/NavHeader/NavHeader.screen'
 import styles from './Transactions.style'
-import {useNavigation} from "@react-navigation/native";
+import {Text, Wrapper} from '../../components'
+import {useNavigation, useTheme} from "@react-navigation/native";
 
 export const TransactionList = ({ data, navigateTo }) =>{
   const navigation = useNavigation()
+  const {colors} = useTheme()
   return  (
   <TouchableOpacity onPress={()=> navigation.navigate(navigateTo || "TransactionDetails")}>
-    <View style={styles.list}>
+    <View style={[styles.list, {backgroundColor: colors.listCard}]}>
       <View style={styles.listItem}>
         <Text>{data.date}</Text>
         <Text>{data.time}</Text>
@@ -62,11 +63,11 @@ const Transactions = ({ navigation }) => {
     ])
   }, [])
   return (
-    <>
+    <Wrapper>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <NavHeader
-          rightSection={BackIcon}
+          backIcon
           navigation={navigation}
           title="Transactions"
         />
@@ -77,7 +78,7 @@ const Transactions = ({ navigation }) => {
           ))}
         </View>
       </SafeAreaView>
-    </>
+    </Wrapper>
   )
 }
 

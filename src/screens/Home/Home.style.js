@@ -44,8 +44,7 @@ export default StyleSheet.create({
  
 payWith: {
   textAlign: 'center',
-  marginVertical: 20,
-  color: '#fff',
+  marginVertical: 20, 
   fontSize: 16,
   fontWeight: 'bold'
 },

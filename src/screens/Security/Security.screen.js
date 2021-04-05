@@ -1,15 +1,14 @@
 import React from 'react'
 import {
   SafeAreaView,
-  StatusBar,
-  Text,
+  StatusBar, 
   View,
   TouchableOpacity
 } from 'react-native'
 import BackIcon from '../../assets/images/BackIcon'
 import NavHeader from '../../components/NavHeader/NavHeader.screen'
 import styles from './Security.style'
-
+import {Text, Wrapper} from '../../components'
 const List = ({ text, onPress }) => (
   <TouchableOpacity onPress={onPress}>
     <View style={styles.list}>
@@ -20,11 +19,11 @@ const List = ({ text, onPress }) => (
 
 const Security = ({ navigation }) => {
   return (
-    <>
+    <Wrapper>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <NavHeader
-          rightSection={BackIcon}
+          backIcon
           navigation={navigation}
           title="Security"
         />
@@ -44,7 +43,7 @@ const Security = ({ navigation }) => {
           />
         </View>
       </SafeAreaView>
-    </>
+    </Wrapper>
   )
 }
 

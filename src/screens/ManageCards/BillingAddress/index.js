@@ -2,38 +2,33 @@ import React, { useState } from 'react'
 import {
   SafeAreaView,
   StatusBar,
-  Text,
   View,
   TouchableOpacity,
   ScrollView,
-  TextInput, 
+  TextInput
 } from 'react-native'
-import Ionicons from 'react-native-vector-icons/Ionicons' 
-import BackIcon from '../../../assets/images/BackIcon'; 
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import BackIcon from '../../../assets/images/BackIcon'
 import NavHeader from '../../../components/NavHeader/NavHeader.screen'
 import styles from './styles'
-
-const index = ({ navigation }) => { 
-
+import { useTheme } from '@react-navigation/native'
+import { Text, Wrapper } from '../../../components'
+const index = ({ navigation }) => {
+  const { colors } = useTheme()
   return (
-    <SafeAreaView>
+    <Wrapper>
       <StatusBar barStyle="dark-content" />
 
-      <NavHeader
-        rightSection={BackIcon}
-        navigation={navigation}
-        title="Billing Address"
-      />
+      <NavHeader backIcon navigation={navigation} title="Billing Address" />
       <ScrollView>
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.container}> 
-
+        <View>
           <View style={styles.formControl}>
-          <Text style={styles.formLabel}>Name on Card</Text>
+            <Text style={styles.formLabel}>Name on Card</Text>
             <View style={styles.formInputContainer}>
               <TextInput
-                style={[styles.formInput, {height: 48}]}
+                style={[styles.formInput, { height: 48 }]}
                 placeholder="0000 0000 0000 0000"
+                placeholderTextColor={colors.placeHolderTextColor}
               />
             </View>
           </View>
@@ -42,19 +37,31 @@ const index = ({ navigation }) => {
             <View style={styles.formInputContainer}>
               <Text style={styles.formLabel}>Country</Text>
 
-              <TextInput style={styles.formInput} placeholder="Nigeria" />
+              <TextInput
+                style={styles.formInput}
+                placeholder="Nigeria"
+                placeholderTextColor={colors.placeHolderTextColor}
+              />
             </View>
           </View>
 
           <View style={styles.formControl}>
             <View style={styles.formInputContainer}>
-              <TextInput style={[styles.formInput, {height: 48}]} placeholder="Street Address" />
+              <TextInput
+                style={[styles.formInput, { height: 48 }]}
+                placeholder="Street Address"
+                placeholderTextColor={colors.placeHolderTextColor}
+              />
             </View>
           </View>
 
           <View style={styles.formControl}>
             <View style={styles.formInputContainer}>
-              <TextInput style={[styles.formInput, {height: 48}]} placeholder="City" />
+              <TextInput
+                style={[styles.formInput, { height: 48 }]}
+                placeholder="City"
+                placeholderTextColor={colors.placeHolderTextColor}
+              />
             </View>
           </View>
 
@@ -62,13 +69,21 @@ const index = ({ navigation }) => {
             <View style={styles.formInputContainer}>
               <Text style={styles.formLabel}>State</Text>
 
-              <TextInput style={styles.formInput} placeholder="State" />
+              <TextInput
+                style={styles.formInput}
+                placeholder="State"
+                placeholderTextColor={colors.placeHolderTextColor}
+              />
             </View>
           </View>
 
           <View style={styles.formControl}>
             <View style={styles.formInputContainer}>
-              <TextInput style={[styles.formInput, {height: 48}]} placeholder="Post Code" />
+              <TextInput
+                style={[styles.formInput, { height: 48 }]}
+                placeholder="Post Code"
+                placeholderTextColor={colors.placeHolderTextColor}
+              />
             </View>
           </View>
 
@@ -76,9 +91,8 @@ const index = ({ navigation }) => {
             <Text style={{ color: '#fff' }}>Save</Text>
           </TouchableOpacity>
         </View>
-      </SafeAreaView>
       </ScrollView>
-    </SafeAreaView>
+    </Wrapper>
   )
 }
 

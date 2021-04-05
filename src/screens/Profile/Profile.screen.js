@@ -7,13 +7,14 @@ import {
   TouchableOpacity,
   Image
 } from 'react-native'
-import BackIcon from '../../assets/images/BackIcon'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import NavHeader from '../../components/NavHeader/NavHeader.screen'
 import styles from './Profile.style'
-
-const EditIcon = () => <EvilIcons name="pencil" size={24}/>
+import { Wrapper } from '../../components'
+import { useTheme } from '@react-navigation/native'
+const EditIcon = color => <EvilIcons color={color} name="pencil" size={24} />
 const Profile = ({ navigation }) => {
+  const { colors } = useTheme()
   const [profile, setProfile] = useState({
     name: 'Anna Appleseed',
     address: 'Main street, NYC',
@@ -21,10 +22,15 @@ const Profile = ({ navigation }) => {
     email: 'turtle@gmail.com'
   })
   return (
-    <>
+    <Wrapper>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <NavHeader rightSection={BackIcon} leftSection={EditIcon} leftSectionAction = {()=> navigation.navigate('EditProfile')} navigation={navigation} />
+        <NavHeader
+          backIcon
+          leftSection={() => EditIcon(colors.icons)}
+          leftSectionAction={() => navigation.navigate('EditProfile')}
+          navigation={navigation}
+        />
 
         <TouchableOpacity>
           <Image
@@ -50,7 +56,7 @@ const Profile = ({ navigation }) => {
           </View>
         </View>
       </SafeAreaView>
-    </>
+    </Wrapper>
   )
 }
 
