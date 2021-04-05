@@ -1,8 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import {
   SafeAreaView,
-  View,
-  Text,
+  View, 
   StatusBar,
   TouchableOpacity,
   Alert,
@@ -11,6 +10,7 @@ import {
   Image,
   TouchableWithoutFeedback
 } from 'react-native'
+import {Text} from '../../components/'
 import LinearGradient from 'react-native-linear-gradient'
 import AsyncStorage from '@react-native-community/async-storage'
 import styles from './Home.style'
@@ -25,8 +25,7 @@ import PayModal from './payModal'
 import PinModal from './pinModal'
 import SuccessModal from '../../components/SuccessModal'
 import LButton from '../../components/LinearGradientButton'
-import {Text as RNText} from '../../components'
-// import {AppearanceProvider} from 'react-native-appearance';
+import { useTheme } from '@react-navigation/native'
 import { getStoredState } from 'redux-persist'
 const Home = ({ navigation }) => {
   const [currentTab, setCurrentTab] = useState('in_3')
@@ -37,7 +36,7 @@ const Home = ({ navigation }) => {
     showSuccessModal: false
   })
   const { showPayModal, showPinModal, showSuccessModal } = modals
-  
+  const { colors } = useTheme()
 
   const handleTabChange = data => {
     const item = availbaleTabs.filter(item => item.id === data);
@@ -135,15 +134,11 @@ const Home = ({ navigation }) => {
   }
 useEffect(()=>{
  getImage()
-}, [])
-console.log(Appearance, 'kkk')
-const colorScheme = useColorScheme();
-// const colorScheme = Appearance.getColorScheme();
-console.log(colorScheme)
+}, []) 
   return (
     <>
       <StatusBar barStyle="light-content" />
-      <View style={styles.capture}>
+      <View style={[styles.capture, {backgroundColor: colors.appBackground}]}>
         <SafeAreaView>
           <View style={styles.nav}>
             <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
@@ -186,8 +181,8 @@ console.log(colorScheme)
               </LinearGradient>
             ))}
           </View>
-              <RNText styles={{color:'#fff'}}>Hello</RNText>
-          {/* {availbaleTabs.filter(x => x.id == currentTab)[0].data} */}
+            
+          {availbaleTabs.filter(x => x.id == currentTab)[0].data}
         </SafeAreaView>
       </View>
     </>

@@ -91,17 +91,6 @@ const AppNavigation = () => {
           )
         }}
       />
-       {/* <Drawer.Screen
-        name="DarkMode"
-        component={Home}
-        options={{
-          title: 'Dark Mode',
-          drawerIcon: ({ focused, size }) => (
-            <Entypo
-            name="moon" size={25} style={{marginLeft: 12}}/>
-          )
-        }}
-      />  */}
     </Drawer.Navigator>
   )
 }

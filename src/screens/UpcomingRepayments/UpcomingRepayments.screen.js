@@ -6,12 +6,12 @@ import {
   View,
   TouchableOpacity
 } from 'react-native'
-import BackIcon from '../../assets/images/BackIcon'
+import {useTheme} from '@react-navigation/native'
 import NavHeader from '../../components/NavHeader/NavHeader.screen'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import { TransactionList } from '../Transactions/Transactions.screen'
 import styles from './UpcomingRepayments.style'
-
+import {Wrapper} from '../../components'
 const List = ({ text, onPress, navigation }) => (
   <TouchableOpacity onPress={()=>navigation.navigate("RepaymentDetails")}>
     <View style={styles.list}>
@@ -20,10 +20,10 @@ const List = ({ text, onPress, navigation }) => (
   </TouchableOpacity>
 )
 
-const LS = () => <EvilIcons name="calendar" size={28} />
+const LS = (color) => <EvilIcons color={color} name="calendar" size={28} />
 const UpcomingRepayments = ({ navigation }) => {
   const [upcoming, setUpcoming] = useState([])
-
+  const {colors} = useTheme()
   useEffect(() => {
     setUpcoming([
       {
@@ -49,13 +49,13 @@ const UpcomingRepayments = ({ navigation }) => {
     ])
   }, [])
   return (
-    <>
+    <Wrapper>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <NavHeader
-          rightSection={BackIcon}
+          backIcon
           navigation={navigation}
-          leftSection={LS}
+          leftSection={()=>LS(colors.icons)}
           leftSectionAction={() => navigation.navigate("PaymentSchedule")}
           title="Upcoming Repayments"
         />
@@ -66,7 +66,7 @@ const UpcomingRepayments = ({ navigation }) => {
           ))}
         </View>
       </SafeAreaView>
-    </>
+    </Wrapper>
   )
 }
 

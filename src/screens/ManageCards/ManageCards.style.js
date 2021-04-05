@@ -23,7 +23,6 @@ export default StyleSheet.create({
   btnText: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#000000'
   },
   delBtnContainer: {
     alignItems: 'center'
@@ -33,7 +32,6 @@ export default StyleSheet.create({
   },
   container: {
     alignItems: 'center',
-    paddingHorizontal: 50
   },
   modalText: {
     fontSize: 18,

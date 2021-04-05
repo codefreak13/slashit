@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import {
   SafeAreaView,
-  StatusBar,
-  Text,
+  StatusBar, 
   View,
   TouchableOpacity
 } from 'react-native'
@@ -12,7 +11,9 @@ import XIcon from '../../assets/images/XIcon'
 import Modal from '../../components/Modal/Modal.screen'
 import NavHeader from '../../components/NavHeader/NavHeader.screen'
 import styles from './Security.style'
-import AntDesign from 'react-native-vector-icons/AntDesign' 
+import AntDesign from 'react-native-vector-icons/AntDesign'
+import {Text, Wrapper} from '../../components' 
+import {useTheme} from '@react-navigation/native'
 const List = ({ text, onPress }) => (
   <TouchableOpacity style={styles.list} onPress={onPress}>
     <Text style={styles.listItem}>{text}</Text>
@@ -20,6 +21,7 @@ const List = ({ text, onPress }) => (
 )
 
 const TransactionPin = ({ navigation }) => {
+  const {colors} = useTheme()
   const [pinModalVisible, setPinModalVisible] = useState(false)
   const [editCurrentPinModalVisible, setEditCurrentPinModalVisible] = useState(
     false
@@ -33,13 +35,13 @@ const TransactionPin = ({ navigation }) => {
   const hideEditPinModal = () => setEditCurrentPinModalVisible(false)
 
   return (
-    <>
+    <Wrapper>
       <StatusBar barStyle="dark-content" />
       <Modal visible={pinModalVisible}>
-        <SafeAreaView>
+        <SafeAreaView style={{flex: 1,backgroundColor: colors.card}}>
           <View>
             <TouchableOpacity onPress={hidePinModal} style={styles.xicon}>
-            <AntDesign name="close" size={24} color="#000"/>
+            <AntDesign name="close" size={24} color={colors.icons}/>
             </TouchableOpacity>
 
             <View style={styles.container}>
@@ -62,10 +64,10 @@ const TransactionPin = ({ navigation }) => {
       </Modal>
 
       <Modal visible={editCurrentPinModalVisible}>
-        <SafeAreaView>
+        <SafeAreaView style={{flex: 1,backgroundColor: colors.card}}>
           <View>
             <TouchableOpacity onPress={hideEditPinModal} style={styles.xicon}>
-            <AntDesign name="close" size={24} color="#000"/>
+            <AntDesign name="close" size={24} color={colors.icons}/>
             </TouchableOpacity>
 
             <View style={styles.container}>
@@ -86,10 +88,9 @@ const TransactionPin = ({ navigation }) => {
           </View>
         </SafeAreaView>
       </Modal>
-
-      <SafeAreaView>
+ 
         <NavHeader
-          rightSection={BackIcon}
+          backIcon
           navigation={navigation}
           title="Transaction PIN"
         />
@@ -97,9 +98,8 @@ const TransactionPin = ({ navigation }) => {
         <View>
           <List text="Set transaction PIN" onPress={showPinModal} />
           <List text="Change transaction PIN" onPress={showEditPinModal} />
-        </View>
-      </SafeAreaView>
-    </>
+        </View> 
+    </Wrapper>
   )
 }
 

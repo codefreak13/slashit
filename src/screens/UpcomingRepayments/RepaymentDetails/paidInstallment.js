@@ -1,12 +1,14 @@
 import React from 'react'
-import { 
-  Text,
+import {  
   View, 
   TouchableOpacity
 } from 'react-native' 
 import styles from './styles';
+import { Text} from '../../../components';
 import {useNavigation} from "@react-navigation/native";
+import {useTheme} from '@react-navigation/native'
 const PaidInstallment = ({navigateTo}) => { 
+  const {colors} = useTheme()
   const navigation = useNavigation();
   return ( 
       <TouchableOpacity onPress={() => navigation.navigate(navigateTo)}
@@ -19,7 +21,7 @@ const PaidInstallment = ({navigateTo}) => {
           </View>
           <View style={{ alignItems: 'center' }}>
             <Text style={styles.boldText}>NGN 200.00</Text>
-            <Text style={{ color: '#673AB7' }}>Paid</Text>
+            <Text style={{ color: colors.primary }}>Paid</Text>
           </View>
         </TouchableOpacity> 
   )

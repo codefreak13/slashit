@@ -15,12 +15,14 @@ const customDarkTheme = {
   ...DarkTheme,
   colors: {
     ...DarkTheme.colors,
+    primary: '#BE61CE',
     text: '#DAE1E7',
     icons: '#DAE1E7',
-    appBackground: '#404040',
+    appBackground: '#000',
     customCard: '#999',
     listCard: '#555',
     border: '#f3f3f3',
+    placeHolderTextColor: '#999'
   }
 };
 
@@ -28,12 +30,14 @@ const customDefaultTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
+    primary: '#BE61CE',
     text: '#444',
     icons: '#444',
-    appBackground: '#673AB7',
+    appBackground: '#BE61CE',
     customCard: '#DAE1E7',
     listCard: '#fff',
-    border: '#444'
+    border: '#444',
+    placeHolderTextColor: '#999'
   }
 };
 const AppRoute = () => {

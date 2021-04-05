@@ -2,8 +2,7 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   list: {
-    margin: 10,
-    backgroundColor: '#fff',
+    margin: 10, 
     // backgroundColor: '#DAE1E7',
     padding: 10,
     flexDirection: 'row',

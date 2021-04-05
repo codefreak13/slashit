@@ -26,7 +26,6 @@ export default StyleSheet.create({
   },
   listItem: {
     fontSize: 14,
-    color: '#212121',
     padding: 5
   },
   xicon: {
@@ -37,8 +36,7 @@ export default StyleSheet.create({
     paddingTop: 100,
     paddingHorizontal: 50
   },
-  codeTitleLabel: {
-    color: '#212121',
+  codeTitleLabel: { 
     fontSize: 18,
     marginBottom: 100
   }

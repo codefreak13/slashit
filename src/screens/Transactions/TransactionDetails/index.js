@@ -1,13 +1,13 @@
 import React from 'react'
-import { Share, SafeAreaView, Text, View, StatusBar } from 'react-native'
+import { Share, SafeAreaView, View, StatusBar } from 'react-native'
 import BackIcon from '../../../assets/images/BackIcon'
 import Entypo from 'react-native-vector-icons/Entypo'
 import NavHeader from '../../../components/NavHeader/NavHeader.screen'
 import styles from './styles'
 import List from './transactionLists'
-import {useNavigation} from '@react-navigation/native';
-import {Wrapper} from '../../../components';
-const LS = () => <Entypo name="share" size={24} />
+import {useNavigation, useTheme} from '@react-navigation/native';
+import {Wrapper, Text} from '../../../components'; 
+const LS = (color) => <Entypo color={color} name="share" size={24} />
  
 const index = () => {
   const onShare = async () => {
@@ -30,12 +30,13 @@ const index = () => {
     }
   };
   const navigation = useNavigation()
+  const {colors} = useTheme()
   return (
     <Wrapper>
       <StatusBar barStyle="dark-content" />
       <NavHeader
-        rightSection={BackIcon}
-        leftSection={LS}
+      backIcon
+        leftSection={()=>LS(colors.icons)}
         leftSectionAction={() => onShare()}
         title="Transaction Details"
       />

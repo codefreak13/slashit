@@ -1,13 +1,16 @@
 import React from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 import styles from './styles'
-
+import { Text } from '../../../components'
 const index = ({ label, value, last, onPress }) => {
   return (
     <View style={[styles.list, { borderBottomWidth: last ? 0 : 1 }]}>
-      <Text style={{
-            color: '#303030'
-          }}>{label}</Text>
+      <Text
+        style={{
+          color: '#666'
+        }}>
+        {label}
+      </Text>
       {label === 'Order #' ? (
         <TouchableOpacity onPress={onPress}>
           <Text
@@ -20,7 +23,7 @@ const index = ({ label, value, last, onPress }) => {
       ) : (
         <Text
           style={{
-            color: label === 'Status' ? '#4CAF50' : '#303030'
+            color: label === 'Status' ? '#4CAF50' : '#666'
           }}>
           {value}
         </Text>

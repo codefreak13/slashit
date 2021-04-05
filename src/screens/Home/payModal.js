@@ -12,14 +12,15 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import Modal from '../../components/Modal/Modal.screen'
 import LButton from '../../components/LinearGradientButton'
 import CurrencyInput from 'react-native-currency-input';
-import NavHeader from '../../components/NavHeader/NavHeader.screen'
+import { useTheme } from '@react-navigation/native'
 const index = ({ navigation, visible, setModal, openCloseModalOpenPinModal }) => {
   const [value, setValue] = React.useState(0);
+  const { colors } = useTheme()
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <Modal visible={visible}>
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#BE61CE' }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: colors.appBackground }}>
           <View>
            <TouchableOpacity onPress={setModal} style={styles.xicon}>
               <AntDesign name="close" size={24} color="#fff"/>

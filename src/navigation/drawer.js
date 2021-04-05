@@ -27,12 +27,12 @@ const CustomDrawer = props => {
           }
           style={styles.touchStyles}>
           <View style={styles.icons}>
-            <Ionicons name="ios-notifications" size={25} color="white" />
+            {/* <Ionicons name="ios-notifications" size={25} color="white" /> */}
             <Text style={styles.cartCounter}>
               {result === null ? 0 : result >= 100 ? <Text>99+</Text> : result}
             </Text>
           </View>
-          <FontAwesome name="bell-o" size={20} color={'#000'} />
+          <FontAwesome name="bell-o" size={20} color={colors.icons} />
         </TouchableOpacity>
 
         <View style={styles.profilePictureContainer}>
@@ -98,8 +98,8 @@ const styles = StyleSheet.create({
     margin: 0,
     height: 20,
     top: 13,
-    left: -11,
-    borderRadius: 100,
+    left: 11,
+    borderRadius: 150,
     textAlign: 'center',
     fontSize: 10,
     padding: 3,
@@ -109,8 +109,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     position: 'absolute',
     marginRight: 10,
-    top: -20,
-    right: -10
+    top: -10,
+    right: 10,
   },
   icons: {
     flexDirection: 'row',

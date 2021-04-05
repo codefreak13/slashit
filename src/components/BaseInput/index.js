@@ -38,6 +38,7 @@ export const BaseInput  = ({
           defaultValue={defaultValue}
           value={value}
           placeholder={placeholder}
+          placeholderTextColor='#999'
           onChangeText={onChangeText}
           keyboardType={keyboardType}
           secureTextEntry={secureTextEntry}

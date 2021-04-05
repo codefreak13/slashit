@@ -1,14 +1,14 @@
 import React from 'react'
-import { Linking, Text, View,SafeAreaView, TouchableOpacity } from 'react-native'
+import {   View,SafeAreaView, TouchableOpacity } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import NavHeader from '../../../components/NavHeader/NavHeader.screen'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import BaseInput from '../../../components/BaseInput'
-import Button from '../../../components/Button'
-import {Wrapper} from '../../../components'
+import Button from '../../../components/Button' 
 import styles from '../styles'
-
+import {Wrapper, Text} from '../../../components'; 
+import {useTheme} from '@react-navigation/native' 
 
 const validationSchema = yup.object().shape({
   email: yup.string().email().required('This field is required.'),
@@ -19,8 +19,9 @@ const initialValues = {
   password: ''
 }
 
-const BackIcon = () => <MaterialIcons name="keyboard-backspace" size={24} />
+ 
 const index = ({navigation}) => {
+  const {colors} = useTheme()
   return (
     <Wrapper>
       <NavHeader
@@ -61,7 +62,7 @@ const index = ({navigation}) => {
             />
             <TouchableOpacity onPress={()=>navigation.navigate("ResetPassword")}>
             <Text
-              style={styles.boldText}>
+              style={{...styles.boldText, color: colors.primary}}>
               Forgot Password?
             </Text>
             </TouchableOpacity>
@@ -75,11 +76,10 @@ const index = ({navigation}) => {
 
             <TouchableOpacity
             onPress={()=> navigation.navigate("BusinessAccountSignup")}
-            // onPress={()=>Linking.openURL(`https://www.slashit.me/register`)}
               style={{marginVertical: 20}}>
               <Text>
                 Sign up for a business account?{' '}
-                <Text style={{ fontWeight: 'bold', color: '#673AB7' }}>
+                <Text style={{ fontWeight: 'bold', color:   colors.primary }}>
                  here
                 </Text>
               </Text>
