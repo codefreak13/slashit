@@ -1,12 +1,45 @@
-import React, { useMemo, useEffect, useReducer, useState } from 'react'
+import React, { useMemo, useEffect, useReducer, useState, useContext } from 'react'
 import AsyncStorage from '@react-native-community/async-storage';
-import { View } from 'react-native'
+import { View, useColorScheme } from 'react-native'
 import { AuthContext } from '../context/authContext'
-import { NavigationContainer } from '@react-navigation/native'
+import {ColorContext} from '../context/colorContext'
+import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native'
 import AuthStackScreens from './authStack'
 import AppStackScreens from './appDrawerStack'
-import { ActivityIndicator } from 'react-native'
+import { ActivityIndicator } from 'react-native' 
+
+ 
+
+ 
+const customDarkTheme = {
+  ...DarkTheme,
+  colors: {
+    ...DarkTheme.colors,
+    text: '#DAE1E7',
+    icons: '#DAE1E7',
+    appBackground: '#404040',
+    customCard: '#999',
+    listCard: '#555',
+    border: '#f3f3f3',
+  }
+};
+
+const customDefaultTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    text: '#444',
+    icons: '#444',
+    appBackground: '#673AB7',
+    customCard: '#DAE1E7',
+    listCard: '#fff',
+    border: '#444'
+  }
+};
 const AppRoute = () => {
+  const {isDark, shuffle} = useContext(ColorContext)
+  const scheme = useColorScheme();
+
   const handleSignOut = async () => {
     try {
       await AsyncStorage.removeItem('token')
@@ -16,10 +49,10 @@ const AppRoute = () => {
   }
   const initialLoginState = {
     isLoading: true,
-    userEmail: null,
+    userEmail: null, 
     userToken: null
   }
-
+  console.log(isDark)
   const loginReducer = (prevState, action) => {
     switch (action.type) {
       case 'RETRIEVE_TOKEN':
@@ -87,7 +120,7 @@ const AppRoute = () => {
 
   return (
     <AuthContext.Provider value={authContext}>
-      <NavigationContainer>
+      <NavigationContainer theme={scheme === 'dark' || isDark ? customDarkTheme : customDefaultTheme}>
         {loginState.userToken !== null ? (
           <AppStackScreens />
         ) : (

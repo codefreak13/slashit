@@ -5,7 +5,9 @@ import styles from './styles'
 const index = ({ label, value, last, onPress }) => {
   return (
     <View style={[styles.list, { borderBottomWidth: last ? 0 : 1 }]}>
-      <Text>{label}</Text>
+      <Text style={{
+            color: '#303030'
+          }}>{label}</Text>
       {label === 'Order #' ? (
         <TouchableOpacity onPress={onPress}>
           <Text

@@ -1,3 +1,3 @@
 import Wrapper from './Wrapper';
-
-export {Wrapper}
+import {Text} from './Text'
+export {Wrapper, Text}
