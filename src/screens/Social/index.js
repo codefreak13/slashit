@@ -41,7 +41,7 @@ const {colors} = useTheme()
         <View style={{ marginTop: 150 }}>
           <Text style={{ marginBottom: 20 }}>
             Go to{' '}
-            <Text style={{ color: '#6262b7' }}>
+            <Text style={{ color: colors.primary }}>
               Apps and websites &gt; Tester Invites
             </Text>{' '}
             on your instagram profile and accept the invitation from Slashit

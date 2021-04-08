@@ -5,7 +5,8 @@ import { AuthContext } from '../context/authContext'
 import {ColorContext} from '../context/colorContext'
 import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native'
 import AuthStackScreens from './authStack'
-import AppStackScreens from './appDrawerStack'
+// import AppStackScreens from './appDrawerStack'
+import AppStackScreens from './BusinessAccount/businessDrawerStack'
 import { ActivityIndicator } from 'react-native' 
 
  
@@ -56,7 +57,6 @@ const AppRoute = () => {
     userEmail: null, 
     userToken: null
   }
-  console.log(isDark)
   const loginReducer = (prevState, action) => {
     switch (action.type) {
       case 'RETRIEVE_TOKEN':
