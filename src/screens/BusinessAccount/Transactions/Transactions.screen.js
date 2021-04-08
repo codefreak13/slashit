@@ -5,10 +5,10 @@ import {
   StatusBar, 
   View,
   TouchableOpacity
-} from 'react-native'
-import NavHeader from '../../components/NavHeader/NavHeader.screen'
+} from 'react-native' 
+import NavHeader from '../../../components/NavHeader/NavHeader.screen'
 import styles from './Transactions.style'
-import {Text, Wrapper} from '../../components'
+import {Text, Wrapper} from '../../../components'
 import {useNavigation, useTheme} from "@react-navigation/native";
 
 export const TransactionList = ({ data, navigateTo }) =>{
