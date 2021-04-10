@@ -19,7 +19,8 @@ const Profile = ({ navigation }) => {
     name: 'Anna Appleseed',
     address: 'Main street, NYC',
     phone: '+23489787897789',
-    email: 'turtle@gmail.com'
+    email: 'turtle@gmail.com',
+    supportEmail: 'support@turtle.com'
   })
   return (
     <Wrapper>
@@ -53,6 +54,9 @@ const Profile = ({ navigation }) => {
           </View>
           <View style={styles.list}>
             <Text style={styles.listData}>{profile.email}</Text>
+          </View>
+          <View style={styles.list}>
+            <Text style={styles.listData}>{profile.supportEmail}</Text>
           </View>
         </View>
       </SafeAreaView>
