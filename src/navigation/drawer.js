@@ -21,14 +21,14 @@ const CustomDrawer = props => {
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.profileContainer}>
-        <TouchableOpacity
+      <TouchableOpacity
           onPress={() =>
             navigation.navigate('Home', { screen: 'Notifications' })
           }
           style={styles.touchStyles}>
-          <View style={styles.icons}>
+           <View style={[styles.cartCounter, {backgroundColor: colors.primary}]}>
             {/* <Ionicons name="ios-notifications" size={25} color="white" /> */}
-            <Text style={styles.cartCounter}>
+            <Text style={{color: '#fff', fontSize: 10}}>
               {result === null ? 0 : result >= 100 ? <Text>99+</Text> : result}
             </Text>
           </View>
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     padding: 0,
     margin: 0,
     height: 20,
-    top: 13,
+    top: 10,
     left: 11,
     borderRadius: 150,
     textAlign: 'center',

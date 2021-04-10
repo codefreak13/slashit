@@ -4,7 +4,7 @@ import Profile from '../screens/Profile/Profile.screen'
 import EditProfile from '../screens/Profile/EditProfile.screen' 
 const Stack = createStackNavigator()
 
-const EditProfileStack = () => {
+const index = () => {
     return (
       <Stack.Navigator initialRouteName="Profile" headerMode='none'>
         <Stack.Screen name="Profile" component={Profile} />
@@ -13,4 +13,4 @@ const EditProfileStack = () => {
     );
   }
 
-  export default EditProfileStack
+  export default index

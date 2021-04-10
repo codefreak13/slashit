@@ -17,7 +17,8 @@ const validationSchema = yup.object().shape({
   name: yup.string().required('This field is required.'),
   address: yup.string().required('This field is required.'),
   phone: yup.string().required('This field is required.'),
-  email: yup.string().email().required('This field is required.')
+  email: yup.string().email().required('This field is required.'),
+  supportEmail: yup.string().email().required('This field is required.'),
 })
 const initialValues = {
   email: '',
@@ -29,7 +30,8 @@ const EditProfile = ({ navigation }) => {
     name: 'Anna Appleseed',
     address: 'Main street, NYC',
     phone: '+23489787897789',
-    email: 'turtle@gmail.com'
+    email: 'turtle@gmail.com',
+    supportEmail: 'support@turtle.com'
   })
   return (
     <Wrapper>
@@ -56,7 +58,8 @@ const EditProfile = ({ navigation }) => {
             name: 'Anna Appleseed',
             address: 'Main street, NYC',
             phone: '+23489787897789',
-            email: 'turtle@gmail.com'
+            email: 'turtle@gmail.com',
+            supportEmail: 'support@turtle.com'
           }}
           validationSchema={validationSchema}
           onSubmit={values => check(values)}>
@@ -107,6 +110,16 @@ const EditProfile = ({ navigation }) => {
                 touched={touched.email}
                 name={values.email}
                 placeholder="Email"
+                style={styles.style}
+                inputStyle={styles.listData}
+              />
+              <BaseInput
+                value={values.supportEmail}
+                onChangeText={handleChange('supportEmail')}
+                errors={errors.supportEmail}
+                touched={touched.supportEmail}
+                name={values.supportEmail}
+                placeholder="Support Email"
                 style={styles.style}
                 inputStyle={styles.listData}
               />
