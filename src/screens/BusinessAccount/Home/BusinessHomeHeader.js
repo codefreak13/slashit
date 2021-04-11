@@ -13,7 +13,7 @@ const index = ({navigation}) => {
         style={{ flexDirection: 'row', alignItems: 'center', marginTop: 5, height: 48 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-            <MaterialCommunityIcons name="menu" size={24} color={colors.icon} />
+            <MaterialCommunityIcons name="menu" size={26} color={colors.icons} />
           </TouchableOpacity>
           <Text style={{ fontWeight: 'bold', marginLeft: 5 }}>Nike Store</Text>
         </View>

@@ -44,14 +44,15 @@ const index = ({ navigation }) => {
             NGN 35,000.00
           </Text>
           <View style={styles.divider} />
-          <View style={{ flexDirection: 'row' }}>
+          <TouchableOpacity onPress={() => navigation.navigate("AddMoney")} style={{ flexDirection: 'row' }}>
             <Ionicons
+            color={colors.icons}
               name="add-circle-outline"
               size={24}
               style={{ marginRight: 6 }}
             />
             <Text style={styles.boldText}>Add Money</Text>
-          </View>
+          </TouchableOpacity>
         </View>
         <Button title="Create Order" containerStyle={styles.btn} />
         <View style={{ marginTop: 20 }}>

@@ -1,5 +1,5 @@
-import React, {useContext} from 'react'
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
+import React, { useContext, useState } from 'react'
+import { View, StyleSheet,Switch, TouchableOpacity } from 'react-native'
 import {
   DrawerContentScrollView,
   DrawerItemList
@@ -8,27 +8,34 @@ import Icon3 from 'react-native-vector-icons/FontAwesome5'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Entypo from 'react-native-vector-icons/Entypo'
-import {AuthContext} from '../context/authContext';
-import {ColorContext} from '../context/colorContext';
-import {Text} from '../components'
+import { AuthContext } from '../context/authContext'
+import { ColorContext } from '../context/colorContext'
+import { Text } from '../components'
 import { useTheme } from '@react-navigation/native'
 const CustomDrawer = props => {
-  const { colors } = useTheme() 
-  const {isDark, shuffle} = useContext(ColorContext);
+  const { colors } = useTheme()
+  const { isDark, shuffle } = useContext(ColorContext)
+  const [switchValue, setswitchValue] = useState(false)
+
+  const toggleSwitch = value => {
+    setswitchValue(previousState => !previousState)
+    shuffle()
+  }
   const navigation = props.navigation
   const result = 32
-  const {signOut} = useContext(AuthContext);
+  const { signOut } = useContext(AuthContext)
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.profileContainer}>
-      <TouchableOpacity
+        <TouchableOpacity
           onPress={() =>
             navigation.navigate('Home', { screen: 'Notifications' })
           }
           style={styles.touchStyles}>
-           <View style={[styles.cartCounter, {backgroundColor: colors.primary}]}>
+          <View
+            style={[styles.cartCounter, { backgroundColor: colors.primary }]}>
             {/* <Ionicons name="ios-notifications" size={25} color="white" /> */}
-            <Text style={{color: '#fff', fontSize: 10}}>
+            <Text style={{ color: '#fff', fontSize: 10 }}>
               {result === null ? 0 : result >= 100 ? <Text>99+</Text> : result}
             </Text>
           </View>
@@ -45,16 +52,47 @@ const CustomDrawer = props => {
       <DrawerItemList {...props} />
 
       <View style={styles.footer}>
-        <TouchableOpacity onPress={()=> shuffle()} style={{width: '90%', flexDirection: 'row', alignItems: 'center',  }}>
-        <Entypo color={colors.text}
-            name="moon" size={25} style={{marginLeft: 12}}/>
-          <Text style={{ marginLeft:35, color: '#999'}}>Dark Mode</Text>
+        <TouchableOpacity
+          onPress={() => shuffle()}
+          style={{ width: '90%', flexDirection: 'row', alignItems: 'center' }}>
+          <Ionicons
+            color={colors.text}
+            name="ios-moon-outline"
+            size={25}
+            style={{ marginLeft: 17 }}
+          />
+          <Text style={{ marginLeft: 36, color: '#999' }}>Dark Mode</Text>
+          <View style={{alignSelf:'flex-end',  marginLeft: 60}}>
+          <Switch onValueChange={toggleSwitch} value={switchValue} />
+          </View>
         </TouchableOpacity>
-        <View style={{paddingTop: 10, borderTopWidth: 2, marginTop: 40, width: '100%', alignItems: 'center'}}>
-        <Text>Credit limit NGN 4000</Text>
-        <TouchableOpacity onPress={signOut}  style={{marginTop:15}}>
-          <Text>Sign Out</Text>
+        <TouchableOpacity
+          onPress={signOut}
+          style={{
+            width: '90%',
+            marginTop: 10,
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <Ionicons
+            color={colors.text}
+            name="log-out-outline"
+            size={25}
+            style={{ marginLeft: 17 }}
+          />
+          <Text style={{ marginLeft: 35, color: '#999' }}>Sign Out</Text>
+          
         </TouchableOpacity>
+        <View
+          style={{
+            paddingTop: 10,
+            borderTopWidth: 2,
+            marginTop: 40,
+            width: '100%',
+            alignItems: 'center'
+          }}>
+          <Text>Credit limit NGN 4000</Text>
+          
         </View>
       </View>
     </DrawerContentScrollView>
@@ -86,7 +124,7 @@ const styles = StyleSheet.create({
   footer: {
     // borderTopWidth: 2,
     // marginTop: 20,
-    alignItems: 'center',
+    alignItems: 'center'
     // paddingHorizontal: 20,
     // backgroundColor: 'red'
   },
@@ -110,7 +148,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     marginRight: 10,
     top: -10,
-    right: 10,
+    right: 10
   },
   icons: {
     flexDirection: 'row',

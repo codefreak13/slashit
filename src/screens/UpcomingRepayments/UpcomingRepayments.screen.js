@@ -4,26 +4,27 @@ import {
   StatusBar,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  FlatList
 } from 'react-native'
-import {useTheme} from '@react-navigation/native'
+import { useTheme } from '@react-navigation/native'
 import NavHeader from '../../components/NavHeader/NavHeader.screen'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import { TransactionList } from '../Transactions/Transactions.screen'
 import styles from './UpcomingRepayments.style'
-import {Wrapper} from '../../components'
+import { Wrapper } from '../../components'
 const List = ({ text, onPress, navigation }) => (
-  <TouchableOpacity onPress={()=>navigation.navigate("RepaymentDetails")}>
+  <TouchableOpacity onPress={() => navigation.navigate('RepaymentDetails')}>
     <View style={styles.list}>
       <Text style={styles.listItem}>{text}</Text>
     </View>
   </TouchableOpacity>
 )
 
-const LS = (color) => <EvilIcons color={color} name="calendar" size={28} />
+const LS = color => <EvilIcons color={color} name="calendar" size={28} />
 const UpcomingRepayments = ({ navigation }) => {
   const [upcoming, setUpcoming] = useState([])
-  const {colors} = useTheme()
+  const { colors } = useTheme()
   useEffect(() => {
     setUpcoming([
       {
@@ -55,16 +56,22 @@ const UpcomingRepayments = ({ navigation }) => {
         <NavHeader
           backIcon
           navigation={navigation}
-          leftSection={()=>LS(colors.icons)}
-          leftSectionAction={() => navigation.navigate("PaymentSchedule")}
+          leftSection={() => LS(colors.icons)}
+          leftSectionAction={() => navigation.navigate('PaymentSchedule')}
           title="Upcoming Repayments"
         />
-
-        <View>
+        <FlatList
+          data={val}
+          renderItem={({ item, index }) => (
+            <TransactionList navigateTo="RepaymentDetails" data={item} />
+          )}
+          keyExtractor={item => Math.random()}
+        />
+        {/* <View>
           {upcoming.map((val, key) => (
             <TransactionList  navigateTo="RepaymentDetails" key={key} data={val} />
           ))}
-        </View>
+        </View> */}
       </SafeAreaView>
     </Wrapper>
   )

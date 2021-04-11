@@ -1,17 +1,24 @@
-import React, { useMemo, useEffect, useReducer, useState, useContext } from 'react'
-import AsyncStorage from '@react-native-community/async-storage';
+import React, {
+  useMemo,
+  useEffect,
+  useReducer,
+  useState,
+  useContext
+} from 'react'
+import AsyncStorage from '@react-native-community/async-storage'
 import { View, useColorScheme } from 'react-native'
 import { AuthContext } from '../context/authContext'
-import {ColorContext} from '../context/colorContext'
-import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native'
+import { ColorContext } from '../context/colorContext'
+import {
+  NavigationContainer,
+  DarkTheme,
+  DefaultTheme
+} from '@react-navigation/native'
 import AuthStackScreens from './authStack'
-// import AppStackScreens from './appDrawerStack'
-import AppStackScreens from './BusinessAccount/businessDrawerStack'
-import { ActivityIndicator } from 'react-native' 
+import ShopperStackScreens from './appDrawerStack'
+import BusinessStackScreens from './BusinessAccount/businessDrawerStack'
+import { ActivityIndicator } from 'react-native'
 
- 
-
- 
 const customDarkTheme = {
   ...DarkTheme,
   colors: {
@@ -20,12 +27,12 @@ const customDarkTheme = {
     text: '#DAE1E7',
     icons: '#DAE1E7',
     appBackground: '#000',
-    customCard: '#999',
+    customCard: '#99999932',
     listCard: '#555',
     border: '#f3f3f3',
     placeHolderTextColor: '#999'
   }
-};
+}
 
 const customDefaultTheme = {
   ...DefaultTheme,
@@ -40,10 +47,10 @@ const customDefaultTheme = {
     border: '#444',
     placeHolderTextColor: '#999'
   }
-};
+}
 const AppRoute = () => {
-  const {isDark, shuffle} = useContext(ColorContext)
-  const scheme = useColorScheme();
+  const { isDark, shuffle } = useContext(ColorContext)
+  const scheme = useColorScheme()
 
   const handleSignOut = async () => {
     try {
@@ -54,8 +61,9 @@ const AppRoute = () => {
   }
   const initialLoginState = {
     isLoading: true,
-    userEmail: null, 
-    userToken: null
+    userEmail: null,
+    userToken: null,
+    accountType: null
   }
   const loginReducer = (prevState, action) => {
     switch (action.type) {
@@ -63,14 +71,16 @@ const AppRoute = () => {
         return {
           ...prevState,
           userToken: action.token,
-          isLoading: false
+          isLoading: false,
+          accountType: action.accountType
         }
       case 'LOGIN':
         return {
           ...prevState,
           userEmail: action.email,
           userToken: action.token,
-          isLoading: false
+          isLoading: false,
+          accountType: action.accountType
         }
       case 'LOGOUT':
         return {
@@ -85,14 +95,15 @@ const AppRoute = () => {
   const [loginState, dispatch] = useReducer(loginReducer, initialLoginState)
   const authContext = useMemo(
     () => ({
-      signIn: async (token, email) => {
+      signIn: async (token, email, accountType) => {
         try {
           await AsyncStorage.setItem('token', token)
           await AsyncStorage.setItem('email', email)
+          await AsyncStorage.setItem('accountType', accountType)
+          dispatch({ type: 'LOGIN', email, token, accountType })
         } catch (e) {
           console.log(e, 'Error')
         }
-        dispatch({ type: 'LOGIN', email, token })
       },
       signOut: async () => {
         await handleSignOut()
@@ -103,12 +114,14 @@ const AppRoute = () => {
   )
   const getToken = async () => {
     let userToken = null
+    let accountType = null
     try {
       userToken = await AsyncStorage.getItem('token')
+      accountType = await AsyncStorage.getItem('accountType')
     } catch (e) {
       console.log('Error')
     }
-    dispatch({ type: 'RETRIEVE_TOKEN', token: userToken })
+    dispatch({ type: 'RETRIEVE_TOKEN', token: userToken, accountType })
   }
   useEffect(() => {
     getToken()
@@ -124,9 +137,16 @@ const AppRoute = () => {
 
   return (
     <AuthContext.Provider value={authContext}>
-      <NavigationContainer theme={scheme === 'dark' || isDark ? customDarkTheme : customDefaultTheme}>
+      <NavigationContainer
+        theme={
+          isDark ? customDarkTheme : customDefaultTheme
+        }>
         {loginState.userToken !== null ? (
-          <AppStackScreens />
+          loginState.accountType === 'BusinessAccount' ? (
+            <BusinessStackScreens />
+          ) : (
+            <ShopperStackScreens />
+          )
         ) : (
           <AuthStackScreens />
         )}
