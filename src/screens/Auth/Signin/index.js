@@ -34,7 +34,7 @@ const index = ({navigation}) => {
   const {signIn} = useContext(AuthContext);
   const check = ({email, password}) => {
     if(email === "test@gmail.com"  && password === "12345"){
-      signIn('d23nh6890knsaweeee', email)
+      signIn('d23nh6890knsaweeee', email, 'shopperAccount')
     }else if(email !== "test@gmail.com"){
       show("This email does not exist!")
     }else if(password !== "12345"){

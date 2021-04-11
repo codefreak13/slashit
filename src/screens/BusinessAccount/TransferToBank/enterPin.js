@@ -31,7 +31,7 @@ const index = ({
     )
       .then(success => {
         console.log('Authenticated Successfully')
-        onClosePinModalOpenSuccessModal()
+        navigation.navigate("Home")
       })
       .catch(error => {
         console.log('Authentication Failed')

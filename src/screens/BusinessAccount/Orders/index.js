@@ -1,10 +1,39 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, FlatList } from 'react-native'
 import { Wrapper, Text } from '../../../components'
-const index = () => {
+import NavHeader from '../../../components/NavHeader/NavHeader.screen'
+import OrderList from './ordersList'
+const data = [
+  {
+    productName: 'Pair of shoe',
+    amount: '6,900.00',
+    date: 'Jul 12'
+  },
+  {
+    productName: 'Pair of shoe',
+    amount: '6,900.00',
+    date: 'Jul 12'
+  },
+  {
+    productName: 'Pair of shoe',
+    amount: '6,900.00',
+    date: 'Jul 12'
+  },
+  {
+    productName: 'Pair of shoe',
+    amount: '6,900.00',
+    date: 'Jul 12'
+  }
+]
+const index = ({ navigation }) => {
   return (
     <Wrapper>
-      <Text>Orders</Text>
+      <NavHeader backIcon navigation={navigation} title="Orders" />
+      <FlatList
+        data={data}
+        renderItem={({ item, index }) => <OrderList data={item} />}
+        keyExtractor={item => Math.random().toString()}
+      />
     </Wrapper>
   )
 }

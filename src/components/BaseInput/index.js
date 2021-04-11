@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-
+import {useTheme} from '@react-navigation/native'
  
 
 export const BaseInput  = ({
@@ -28,6 +28,7 @@ export const BaseInput  = ({
   defaultValue,
   ...props
 }) => {
+  const {colors} = useTheme()
   return (
     <View style={{marginBottom: 12}}>
       <View style={[styles.inputContainer, style]} {...props}>
@@ -38,13 +39,13 @@ export const BaseInput  = ({
           defaultValue={defaultValue}
           value={value}
           placeholder={placeholder}
-          placeholderTextColor='#999'
+          placeholderTextColor={colors.text}
           onChangeText={onChangeText}
           keyboardType={keyboardType}
           secureTextEntry={secureTextEntry}
           multiline={multiline}
           numberOfLines={numberOfLines}
-          style={[{width: rightIcon || leftIcon?'80%':'95%'}, inputStyle]}
+          style={[{color: '#757575', width: rightIcon || leftIcon?'80%':'95%'}, inputStyle]}
         />
          <View>
         {rightIcon}

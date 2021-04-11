@@ -1,5 +1,5 @@
-import React, {useContext} from 'react'
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
+import React, {useContext, useState} from 'react'
+import { View, StyleSheet,Switch, TouchableOpacity } from 'react-native'
 import {
   DrawerContentScrollView,
   DrawerItemList
@@ -15,6 +15,12 @@ import { useTheme } from '@react-navigation/native'
 const CustomDrawer = props => {
   const { colors } = useTheme() 
   const {isDark, shuffle} = useContext(ColorContext);
+  const [switchValue, setswitchValue] = useState(false)
+
+  const toggleSwitch = value => {
+    setswitchValue(previousState => !previousState)
+    shuffle()
+  }
   const navigation = props.navigation
   const result = 32
   const {signOut} = useContext(AuthContext);
@@ -29,11 +35,16 @@ const CustomDrawer = props => {
       <DrawerItemList {...props} />
 
       <View style={styles.footer}>
-        {/* <TouchableOpacity onPress={()=> shuffle()} style={{width: '90%', flexDirection: 'row',  }}>
-          <Text style={{ marginLeft: 5, color: '#999'}}>Dark Mode</Text>
-        </TouchableOpacity> */}
+      <TouchableOpacity
+          onPress={() => shuffle()}
+          style={{ width: '90%', flexDirection: 'row', alignItems: 'center' }}>
+          <Text style={{ marginLeft: 2, color: '#999' }}>Dark Mode</Text>
+          <View style={{alignSelf:'flex-end',  marginLeft: 120}}>
+          <Switch onValueChange={toggleSwitch} value={switchValue} />
+          </View>
+        </TouchableOpacity>
          
-        <TouchableOpacity onPress={signOut}  style={{width: '90%', flexDirection: 'row', marginVertical: 5 }}>
+        <TouchableOpacity onPress={signOut}  style={{width: '90%', flexDirection: 'row', marginVertical: 8}}>
           <Text style={{ marginLeft: 5, color: '#999'}}>Sign Out</Text>
         </TouchableOpacity>
       </View>
