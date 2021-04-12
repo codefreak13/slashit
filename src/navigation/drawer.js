@@ -53,7 +53,7 @@ const CustomDrawer = props => {
 
       <View style={styles.footer}>
         <TouchableOpacity
-          onPress={() => shuffle()}
+          onPress={() => toggleSwitch()}
           style={{ width: '90%', flexDirection: 'row', alignItems: 'center' }}>
           <Ionicons
             color={colors.text}

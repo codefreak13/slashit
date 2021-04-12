@@ -100,7 +100,7 @@ const Home = ({ navigation }) => {
       title: 'Pay with card',
       data: (
         <View style={[styles.captureIcon]}>
-          <Text style={styles.payWith}>Pay with 5342****56732</Text>
+          <Text style={{...styles.payWith, color: '#fff'}}>Pay with 5342****56732</Text>
           <View style={styles.cardHolder}>
             <Card />
           </View>
@@ -138,7 +138,7 @@ useEffect(()=>{
   return (
     <>
       <StatusBar barStyle="light-content" />
-      <View style={[styles.capture, {backgroundColor: colors.appBackground}]}>
+      <View style={[styles.capture]}>
         <SafeAreaView>
           <View style={styles.nav}>
             <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
