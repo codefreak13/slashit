@@ -1,13 +1,13 @@
 import React from 'react'
 import { Text, TouchableOpacity, StyleSheet } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
-const index = ({title, onPress, colors,start, end, xStart, yStart, xEnd, yEnd, containerStyle }) => {
+const index = ({title, borderRadius,onPress, colors,start, end, xStart, yStart, xEnd, yEnd, containerStyle }) => {
   return (
     <LinearGradient
       start={start || { x: xStart || 1, y: yStart || 0 }}
       end={end || { x: xEnd || 0 , y: yEnd || 0 }}
       colors={colors || ['#851B97', '#673AB7']} 
-      style={[styles.addCardButton, {containerStyle}]}>
+      style={[styles.addCardButton,{borderRadius: borderRadius ? 50 : 0}, {containerStyle}]}>
       <TouchableOpacity  onPress={onPress}>
         <Text style={styles.buttonText}>{title}</Text>
       </TouchableOpacity>
@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 18,
     alignSelf: 'center',
-   
   },
   buttonText: {
     fontSize: 18,

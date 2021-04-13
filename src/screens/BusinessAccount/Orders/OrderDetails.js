@@ -76,10 +76,10 @@ const index = ({ route, navigation, data, navigateTo }) => {
           </TouchableOpacity>
         ) : null}
 
-        <TouchableOpacity onPress={() => navigation.navigate('Images')}>
+        <TouchableOpacity style={styles.profile} onPress={() => navigation.navigate('Images')}>
           <Image
             key={Math.random()}
-            style={styles.profile}
+            style={{width: '100%', height: '100%',borderRadius: 150}}
             source={require('../../../assets/images/profile.jpeg')}
             resizeMode="contain"
           />

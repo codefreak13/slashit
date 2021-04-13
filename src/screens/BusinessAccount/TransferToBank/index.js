@@ -4,7 +4,7 @@ import { Formik } from 'formik'
 import * as yup from 'yup'
 import CurrencyInput from 'react-native-currency-input'
 import BaseInput from '../../../components/BaseInput'
-import Button from '../../../components/Button'
+import Button from '../../../components/LinearGradientButton'
 import NavHeader from '../../../components/NavHeader/NavHeader.screen'
 import { Wrapper, Text } from '../../../components'
 import PinModal from './enterPin';
@@ -85,6 +85,7 @@ const index = ({ navigation }) => {
                 You'll be charged a  #53 transfer fee
               </Text>
               <Button
+              borderRadius
                 onPress={handleSubmit}
                 title="Send"
                 containerStyle={{

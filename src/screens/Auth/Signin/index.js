@@ -5,6 +5,7 @@ import * as yup from 'yup'
 import {AuthContext} from '../../../context/authContext';
 import BaseInput from '../../../components/BaseInput'
 import Button from '../../../components/Button'
+import LButton from '../../../components/LinearGradientButton'
 import styles from '../styles'
 import {Wrapper, Text} from '../../../components';
 import {WToast} from 'react-native-smart-tip'
@@ -87,7 +88,7 @@ const index = ({navigation}) => {
             <Button
               onPress={handleSubmit}
               title="Sign in"
-              containerStyle={{ borderRadius: 50 }}
+              containerStyle={{ borderRadius: 50, width: '100%' }}
             />
             <Button
              onPress={()=> navigation.navigate("Signup")}

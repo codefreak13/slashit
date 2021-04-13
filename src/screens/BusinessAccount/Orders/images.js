@@ -1,39 +1,53 @@
-import React from 'react'
-import { Text } from 'react-native'
-import { ImageGallery } from '@nlabs/react-native-image-gallery'
+import React, { useState, useEffect } from 'react'
+import { View, Image, FlatList, TouchableOpacity} from 'react-native'
+import { Wrapper, Text } from '../../../components'
+import NavHeader from '../../../components/NavHeader/NavHeader.screen'
+// import FastImage from 'react-native-fast-image'
+// import { ImageGallery } from '@nlabs/react-native-image-gallery'
 import axios from 'axios'
-class Images extends React.PureComponent {
-  state = {
-    images: []
-  }
-  getImages = async () => {
+const IMAGE_SIZE = 280
+const data = [1,2,3,4,5,6,7,8,9]
+const imagesList = ({navigation}) => {
+  const [images, setImages] = useState([])
+  const getImages = async () => {
     try {
-      const images = await axios
-        .get('https://picsum.photos/v2/list')
-       console.log(images.data, 'hh')
-    this.setState({images: images.data})
-    //   console.log(images, 'gg')
+      const images = await axios.get('https://picsum.photos/v2/list')
+      setImages(images.data)
     } catch {
       e => console.log(e)
     }
   }
-  componentDidMount() {
-    console.log('hiiii')
-    this.getImages()
+  useEffect(() => {
+    getImages()
+  }, [])
+  const renderItem = ({ item, idx }) => {
+    console.log(item, 'ii')
+    return ( 
+			<TouchableOpacity style={{width: '100%',height: IMAGE_SIZE}}>
+				 <Image
+            style={{width: '100%', height: '100%'}}
+            source={require('../../../assets/images/profile.jpeg')}
+            resizeMode="contain"
+          />
+			</TouchableOpacity>
+     
+    )
   }
-
-  render() {
-    console.log(this.state.images, 'jjj')
-    const { images } = this.props
-    const imageUrls = this.state.images.map((img) => ({
-        url: img.url,
-        id: img.id,
-        title: img.author,
-        description: img.download_url
-      })
-    );
-    return <ImageGallery images={imageUrls} />;
-    // return <Text>Hiii</Text>
-  }
+  return (
+    <Wrapper>
+      <View style={{ backgroundColor: 'transparent', flex: 1 }}>
+			<NavHeader
+        close
+        navigation={navigation} 
+      />
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={item => Math.random().toString()}
+        />
+      </View>
+    </Wrapper>
+  )
 }
-export default Images
+
+export default imagesList

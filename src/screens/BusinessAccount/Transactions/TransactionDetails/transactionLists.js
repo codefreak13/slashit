@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import styles from './styles'
-import { Text } from '../../../components'
+import { Text } from '../../../../components'
 const index = ({ label, value, last, onPress }) => {
   return (
     <View style={[styles.list, { borderBottomWidth: last ? 0 : 1 }]}>
