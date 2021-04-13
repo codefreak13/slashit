@@ -13,8 +13,10 @@ import {useNavigation, useTheme} from "@react-navigation/native";
  const index = ({ data, navigateTo }) =>{
   const navigation = useNavigation()
   const {colors} = useTheme()
+  console.log(data)
+  const {status} = data
   return  (
-  <TouchableOpacity onPress={()=> navigation.navigate('OrderDetails')}>
+  <TouchableOpacity onPress={()=> navigation.navigate('OrderDetails', {status})}>
     <View style={[styles.list, {backgroundColor: colors.listCard}]}>
       <View style={styles.listItem}>
         <Text style={{fontWeight: 'bold'}}>{data.productName}</Text>

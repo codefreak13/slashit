@@ -23,10 +23,18 @@ export default StyleSheet.create({
   },
   style: {
     borderWidth: 0,
+    marginTop: 10,
+    borderBottomWidth: 0.6, 
+    borderColor: '#757575',
+    // backgroundColor: 'red'
+  },
+  style1: {
+    borderWidth: 0,
     borderBottomWidth: 0.6, 
     marginTop: 10,
     borderColor: '#757575',
-    // backgroundColor: 'red'
+    width: '60%',  borderBottomWidth: 0,
+    paddingHorizontal: 0
   },
   view: {
       height: IMAGE_SIZE,

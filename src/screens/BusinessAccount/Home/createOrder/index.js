@@ -9,10 +9,15 @@ import {
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
+import Entypo from 'react-native-vector-icons/Entypo'
 import BaseInput from '../../../../components/BaseInput'
 import NavHeader from '../../../../components/NavHeader/NavHeader.screen'
 import styles from './styles'
 import { Text, Wrapper } from '../../../../components'
+import { countries } from '../../../../components/CountryArray'
+import Picker from '../../../../components/Picker'
+// import {Picker} from '@react-native-picker/picker';
+// import RNPickerSelect from "react-native-picker-select";
 const data = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 const validationSchema = yup.object().shape({
   productName: yup.string().required('This field is required.'),
@@ -36,14 +41,19 @@ const initialValues = {
   state: '',
   postCode: ''
 }
-const CreateText = color => <Text style={{ fontSize: 14,
-    fontWeight: 'bold'}}>Create</Text>
+const CreateText = color => (
+  <Text style={{ fontSize: 14, fontWeight: 'bold' }}>Create</Text>
+)
 const index = ({ navigation }) => {
   const [image, setImage] = useState('')
   const handleImageResponse = async data => {
     console.log(data)
     setImage(data.uri)
   }
+  const [show, setShow] = useState(true)
+  const [country, setCountry] = useState()
+  const onSetCountry = country => setCountry(country)
+  console.log(country, 'ff')
   const [profile, setProfile] = useState({
     name: 'Anna Appleseed',
     address: 'Main street, NYC',
@@ -54,15 +64,14 @@ const index = ({ navigation }) => {
   return (
     <Wrapper>
       <StatusBar barStyle="dark-content" />
-      <ScrollView>
-        <NavHeader
-          backIcon
-          title="Create Order"
-          leftSection={CreateText}
-          leftSectionAction={() => console.log('object')}
-          navigation={navigation}
-        />
-
+      <NavHeader
+        backIcon
+        title="Create Order"
+        leftSection={CreateText}
+        leftSectionAction={() => navigation.navigate('OrderCreated')}
+        navigation={navigation}
+      />
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -116,58 +125,88 @@ const index = ({ navigation }) => {
                 style={styles.style}
                 inputStyle={styles.listData}
               />
-              <BaseInput
-                value={values.streetAddress}
-                onChangeText={handleChange('streetAddress')}
-                errors={errors.streetAddress}
-                touched={touched.streetAddress}
-                name={values.streetAddress}
-                placeholder="Street Address"
-                style={styles.style}
-                inputStyle={styles.listData}
-              />
-              <BaseInput
-                value={values.city}
-                onChangeText={handleChange('city')}
-                errors={errors.city}
-                touched={touched.city}
-                name={values.city}
-                placeholder="City"
-                style={styles.style}
-                inputStyle={styles.listData}
-              />
-              <BaseInput
-                value={values.country}
-                onChangeText={handleChange('country')}
-                errors={errors.country}
-                touched={touched.country}
-                name={values.country}
-                placeholder="Country"
-                style={styles.style}
-                inputStyle={styles.listData}
-              />
-              <BaseInput
-                value={values.state}
-                onChangeText={handleChange('state')}
-                errors={errors.state}
-                touched={touched.state}
-                name={values.state}
-                placeholder="State"
-                style={styles.style}
-                inputStyle={styles.listData}
-              />
-              <BaseInput
-                value={values.postCode}
-                onChangeText={handleChange('postCode')}
-                errors={errors.postCode}
-                touched={touched.postCode}
-                name={values.postCode}
-                placeholder="PostCode"
-                style={styles.style}
-                inputStyle={styles.listData}
-              />
-              <Text style={styles.listData}>Product Images</Text>
-              <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{marginTop: 15}}>
+              <TouchableOpacity
+                onPress={() => setShow(!show)}
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  width: '90%',
+                  alignSelf: 'center'
+                }}>
+                <Text>Shipping Address</Text>
+                <Entypo
+                  name={show ? 'chevron-small-up' : 'chevron-small-down'}
+                  size={28}
+                />
+              </TouchableOpacity>
+              {show ? (
+                <>
+                  <BaseInput
+                    value={values.streetAddress}
+                    onChangeText={handleChange('streetAddress')}
+                    errors={errors.streetAddress}
+                    touched={touched.streetAddress}
+                    name={values.streetAddress}
+                    placeholder="Street Address"
+                    style={styles.style}
+                    inputStyle={styles.listData}
+                  />
+                  <BaseInput
+                    value={values.city}
+                    onChangeText={handleChange('city')}
+                    errors={errors.city}
+                    touched={touched.city}
+                    name={values.city}
+                    placeholder="City"
+                    style={styles.style}
+                    inputStyle={styles.listData}
+                  />
+                  <Picker
+                    PickerData={countries}
+                    onValueChange={onSetCountry}
+                    placeholder={{ label: 'Country', value: null }}
+                  />
+                  <View
+                    style={{
+                      borderBottomWidth: 0.6,
+                      borderColor: '#757575',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      width: '100%',
+                      paddingHorizontal: 10
+                    }}>
+                    <BaseInput
+                      value={values.state}
+                      onChangeText={handleChange('state')}
+                      errors={errors.state}
+                      touched={touched.state}
+                      name={values.state}
+                      placeholder="State"
+                      style={styles.style1}
+                      inputStyle={styles.listData}
+                    />
+                    <BaseInput
+                      value={values.postCode}
+                      onChangeText={handleChange('postCode')}
+                      errors={errors.postCode}
+                      touched={touched.postCode}
+                      name={values.postCode}
+                      placeholder="PostCode"
+                      style={styles.style1}
+                      inputStyle={styles.listData}
+                    />
+                  </View>
+                </>
+              ) : null}
+
+              <Text
+                style={{ ...styles.listData, marginLeft: 20, marginTop: 20 }}>
+                Product Images
+              </Text>
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                style={{ marginTop: 15 }}>
                 <TouchableOpacity
                   onPress={() =>
                     launchImageLibrary(

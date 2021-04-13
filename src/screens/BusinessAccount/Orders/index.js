@@ -7,22 +7,26 @@ const data = [
   {
     productName: 'Pair of shoe',
     amount: '6,900.00',
-    date: 'Jul 12'
+    date: 'Jul 12',
+    status: 'pending'
   },
   {
     productName: 'Pair of shoe',
     amount: '6,900.00',
-    date: 'Jul 12'
+    date: 'Jul 12',
+    status: 'pending'
   },
   {
     productName: 'Pair of shoe',
     amount: '6,900.00',
-    date: 'Jul 12'
+    date: 'Jul 12',
+    status: 'completed'
   },
   {
     productName: 'Pair of shoe',
     amount: '6,900.00',
-    date: 'Jul 12'
+    date: 'Jul 12',
+    status: 'completed'
   }
 ]
 const index = ({ navigation }) => {
