@@ -20,7 +20,9 @@ const NavHeader = ({
   close,
   backIcon,
   leftSectionAction,
-  rightSectionAction
+  rightSectionAction,
+  closeWhite,
+  titleColor
 }) => {
   const { colors } = useTheme()
   const navigation = useNavigation()
@@ -35,7 +37,7 @@ const NavHeader = ({
         {rightSection ? (
           <RS />
         ) : close ? (
-          <AntDesign color={colors.icons} name="close" size={24} />
+          <AntDesign color={closeWhite || colors.icons} name="close" size={24} />
         ) : backIcon ? <MaterialIcons name="arrow-back-ios"color={colors.icons}  size={21}/> : (
            <MaterialIcons
             color={colors.icons}
@@ -46,7 +48,7 @@ const NavHeader = ({
       </TouchableOpacity>
 
       <View style={[styles.navCol, styles.navTitle]}>
-        <Text style={styles.navTitleText}>{title}</Text>
+        <Text style={{...styles.navTitleText, color: titleColor}}>{title}</Text>
       </View>
 
       <View

@@ -10,18 +10,20 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import TouchID from 'react-native-touch-id'
-import { useTheme } from '@react-navigation/native'
+import { useTheme, useNavigation} from '@react-navigation/native'
 import { Text } from '../../../components'
 import Modal from '../../../components/Modal/Modal.screen'
 import { optionalConfigObject } from '../../../utils/fingerPrintScannerConfig'
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input'
+import {show} from '../../../utils/toast' 
 const index = ({
-  navigation,
+  // navigation,
   visible,
   setModal,
   onRequestClose,
   onClosePinModalOpenSuccessModal
 }) => {
+  const navigation = useNavigation()
   const { colors } = useTheme()
   const _pressHandler = () => {
     console.log('hiiiii')
@@ -31,10 +33,12 @@ const index = ({
     )
       .then(success => {
         console.log('Authenticated Successfully')
-        navigation.navigate("Home")
+        show("Successful")
+        navigation.navigate("BusinessHomeScreen")
       })
       .catch(error => {
-        console.log('Authentication Failed')
+        show("Your device does not support Touch Id") 
+        console.log(error,'Authentication Failed')
       })
   }
 
@@ -54,7 +58,7 @@ const index = ({
         console.log(error)
       })
   }, [])
-  const [code, setCode] = useState('')
+  const [code, setCode] = useState('') 
   return (
     <>
       <StatusBar barStyle="dark-content" />
