@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import Clipboard from '@react-native-clipboard/clipboard';
 import { Wrapper, Text } from '../../../../components'
-import Button from '../../../../components/Button' 
+import Button from '../../../../components/LinearGradientButton' 
 import NavHeader from '../../../../components/NavHeader/NavHeader.screen'
 import { useTheme } from '@react-navigation/native'
 import { styles } from './styles'

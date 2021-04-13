@@ -30,7 +30,8 @@ const customDarkTheme = {
     customCard: '#99999932',
     listCard: '#555',
     border: '#f3f3f3',
-    placeHolderTextColor: '#999'
+    placeHolderTextColor: '#999',
+    aux: '#303030'
   }
 }
 
@@ -39,13 +40,14 @@ const customDefaultTheme = {
   colors: {
     ...DefaultTheme.colors,
     primary: '#BE61CE',
-    text: '#444',
+    text: '#000',
     icons: '#444',
     appBackground: '#BE61CE',
     customCard: '#DAE1E7',
     listCard: '#fff',
     border: '#444',
-    placeHolderTextColor: '#999'
+    placeHolderTextColor: '#999',
+    aux: '#fff'
   }
 }
 const AppRoute = () => {
@@ -140,6 +142,7 @@ const AppRoute = () => {
       <NavigationContainer
         theme={
           scheme !== 'dark' || isDark ? customDarkTheme : customDefaultTheme
+          // isDark ? customDarkTheme : customDefaultTheme
         }>
         {loginState.userToken !== null ? (
           loginState.accountType === 'BusinessAccount' ? (

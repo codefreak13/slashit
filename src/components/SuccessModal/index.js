@@ -10,7 +10,6 @@ import {
 } from 'react-native'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Modal from '../Modal/Modal.screen'
-import LButton from '../LinearGradientButton'
 const index = ({ navigation, visible, setModal }) => {
   return (
     <>

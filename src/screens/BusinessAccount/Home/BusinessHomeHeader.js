@@ -19,7 +19,7 @@ const index = ({navigation}) => {
         </View>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate('Home', { screen: 'Notifications' })
+            navigation.navigate('Orders')
           }
           style={styles.touchStyles}>
           <View style={[styles.cartCounter, {backgroundColor: colors.primary}]}> 

@@ -61,17 +61,13 @@ const UpcomingRepayments = ({ navigation }) => {
           title="Upcoming Repayments"
         />
         <FlatList
-          data={val}
+          data={upcoming}
           renderItem={({ item, index }) => (
             <TransactionList navigateTo="RepaymentDetails" data={item} />
           )}
           keyExtractor={item => Math.random()}
         />
-        {/* <View>
-          {upcoming.map((val, key) => (
-            <TransactionList  navigateTo="RepaymentDetails" key={key} data={val} />
-          ))}
-        </View> */}
+        
       </SafeAreaView>
     </Wrapper>
   )

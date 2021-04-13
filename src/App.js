@@ -14,7 +14,7 @@ const App = () => {
       <Provider store={store}>
         <ColorContext.Provider value={{
           isDark: isDark ? true : false,
-          shuffle: () => setIsDark(() => !isDark)
+          shuffle: () => setIsDark(!isDark)
         }}>
         <MainNavigation />
         </ColorContext.Provider>

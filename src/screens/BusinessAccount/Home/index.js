@@ -3,7 +3,7 @@ import { View, TouchableOpacity } from 'react-native'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { Wrapper, Text } from '../../../components'
-import Button from '../../../components/Button'
+import Button from '../../../components/LinearGradientButton'
 import Header from './BusinessHomeHeader'
 import { useTheme } from '@react-navigation/native'
 import { styles } from './styles'
@@ -54,7 +54,7 @@ const index = ({ navigation }) => {
             <Text style={styles.boldText}>Add Money</Text>
           </TouchableOpacity>
         </View>
-        <Button title="Create Order" containerStyle={styles.btn} />
+        <Button borderRadius title="Create Order" containerStyle={styles.btn} onPress={()=>navigation.navigate("CreateOrder")} />
         <View style={{ marginTop: 20 }}>
           <Text style={styles.boldText}>Recent</Text>
           {data.map(({date, time, amount}) => (
