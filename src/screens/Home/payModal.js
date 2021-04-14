@@ -8,42 +8,52 @@ import {
   StyleSheet,
   TextInput
 } from 'react-native'
-import AntDesign from 'react-native-vector-icons/AntDesign' 
+import AntDesign from 'react-native-vector-icons/AntDesign'
 import Modal from '../../components/Modal/Modal.screen'
 import LButton from '../../components/LinearGradientButton'
-import CurrencyInput from 'react-native-currency-input';
+import CurrencyInput from 'react-native-currency-input'
 import { useTheme } from '@react-navigation/native'
-const index = ({ navigation, visible, setModal, openCloseModalOpenPinModal }) => {
-  const [value, setValue] = React.useState(0);
+const index = ({
+  navigation,
+  visible,
+  setModal,
+  openCloseModalOpenPinModal
+}) => {
+  const [value, setValue] = React.useState(0)
   const { colors } = useTheme()
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <Modal visible={visible}>
-        <SafeAreaView style={{ flex: 1, backgroundColor: colors.appBackground }}>
+        <SafeAreaView
+          style={{ flex: 1, backgroundColor: colors.appBackground }}>
           <View>
-           <TouchableOpacity onPress={setModal} style={styles.xicon}>
-              <AntDesign name="close" size={24} color="#fff"/>
-            </TouchableOpacity> 
-            <View
-              style={styles.inputContainer}>
-              <Text style={styles.textInput}>{'\u20A6'}</Text> 
-               <CurrencyInput
-               placeholder="0.00"
-               placeholderTextColor="#fff"
-               style={styles.textInput}
-      value={value}
-      onChangeValue={setValue}
-      // unit="$"
-      delimiter=","
-      separator="."
-      precision={2}
-      onChangeText={(formattedValue) => {
-        console.log(formattedValue); // $2,310.46
-      }}
-    />
-            </View> 
-            <LButton title="Pay now" onPress={openCloseModalOpenPinModal}/>
+            <TouchableOpacity onPress={setModal} style={styles.xicon}>
+              <AntDesign name="close" size={24} color="#fff" />
+            </TouchableOpacity>
+            <View style={styles.inputContainer}>
+              <Text style={styles.textInput}>{'\u20A6'}</Text>
+              <CurrencyInput
+                placeholder="0.00"
+                placeholderTextColor="#fff"
+                style={styles.textInput}
+                value={value}
+                onChangeValue={setValue}
+                // unit="$"
+                delimiter=","
+                separator="."
+                precision={2}
+                onChangeText={formattedValue => {
+                  console.log(formattedValue) // $2,310.46
+                }}
+              />
+            </View>
+            <LButton
+              width="50%"
+              alignSelf="center"
+              title="Pay now"
+              onPress={openCloseModalOpenPinModal}
+            />
           </View>
         </SafeAreaView>
       </Modal>
@@ -54,7 +64,7 @@ const index = ({ navigation, visible, setModal, openCloseModalOpenPinModal }) =>
 export default index
 const styles = StyleSheet.create({
   xicon: {
-    height: 50, 
+    height: 50
   },
   container: {
     alignItems: 'center',
@@ -71,7 +81,7 @@ const styles = StyleSheet.create({
   },
   textInput: { fontSize: 50, color: '#fff' },
   linearGradient: {
-    width: '50%' 
+    width: '50%'
   },
   buttonText: {
     fontSize: 18,
@@ -84,7 +94,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center', 
+    alignItems: 'center',
     width: '100%',
     marginVertical: 40
   }

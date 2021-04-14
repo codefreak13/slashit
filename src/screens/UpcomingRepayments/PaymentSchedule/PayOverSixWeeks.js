@@ -9,8 +9,9 @@ import {
 import CalendarPicker from 'react-native-calendar-picker'
 import Carousel from 'react-native-snap-carousel'
 import AntDesign from 'react-native-vector-icons/AntDesign'
-
+import {useTheme} from '@react-navigation/native' 
 const index = ({ navigation }) => {
+  const {colors} = useTheme()
   const [state, setState] = useState({
     firstInstallment: null,
     secondInstallment: null,
@@ -35,6 +36,7 @@ const index = ({ navigation }) => {
       title: 'First Installment',
       calendar: (
         <CalendarPicker
+        textStyle={{color:colors.text}}
           onDateChange={setFirstInstallment}
           nextTitle={<AntDesign name="right" size={20} />}
           previousTitle={<AntDesign name="left" size={20} />}
@@ -42,12 +44,14 @@ const index = ({ navigation }) => {
           showDayStragglers={true}
           selectedStartDate={new Date(2021,4,4)}
         />
+        // <Calendar onDateChange={setFirstInstallment} initialDate="2021,4,4"/>
       )
     },
     {
       title: 'Second Installment',
       calendar: (
         <CalendarPicker
+        textStyle={{color:colors.text}}
           onDateChange={setFirstInstallment}
           nextTitle={<AntDesign name="right" size={20} />}
           previousTitle={<AntDesign name="left" size={20} />}
@@ -61,6 +65,7 @@ const index = ({ navigation }) => {
       title: 'Third Installment',
       calendar: (
         <CalendarPicker
+        textStyle={{color:colors.text}}
           onDateChange={setFirstInstallment}
           nextTitle={<AntDesign name="right" size={20} />}
           previousTitle={<AntDesign name="left" size={20} />}
@@ -74,6 +79,7 @@ const index = ({ navigation }) => {
       title: 'Final Installment',
       calendar: (
         <CalendarPicker
+        textStyle={{color:colors.text}}
           onDateChange={setFirstInstallment}
           nextTitle={<AntDesign name="right" size={20} />}
           previousTitle={<AntDesign name="left" size={20} />}
@@ -90,7 +96,7 @@ const index = ({ navigation }) => {
         <Text
           style={{
             fontSize: 16,
-            color: '#000',
+            color: colors.text,
             textAlign: 'center',
             marginBottom: 15
           }}>

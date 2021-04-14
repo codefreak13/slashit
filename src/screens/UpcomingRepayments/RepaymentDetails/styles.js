@@ -19,7 +19,7 @@ export default styles = StyleSheet.create({
     backgroundColor: '#303030',
     marginVertical: 6
   },
-  prod: {flex: 2, marginVertical: 15 },
+  prod: {flex: 1.5, marginVertical: 10, },
 
   paidContainer: {
     borderLeftWidth: 5,

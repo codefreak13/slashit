@@ -5,7 +5,7 @@ import { Formik } from 'formik'
 import * as yup from 'yup'
 import BaseInput from '../../../components/BaseInput'
 import NavHeader from '../../../components/NavHeader/NavHeader.screen'
-import Button from '../../../components/Button'
+import LButton from '../../../components/LinearGradientButton'
 import {Wrapper} from '../../../components';
 import styles from '../styles'
 
@@ -47,14 +47,12 @@ const index = ({navigation}) => {
               name={values.input}
               placeholder="Enter your Email or Phone Number"
             />
-            
-            <Button
-            onPress={()=> navigation.navigate("VerifyPhone")}
+            <LButton
+                  width="100%"
+                  borderRadius
+                  onPress={()=> navigation.navigate("VerifyPhone")}
               title="Send link" 
-              containerStyle={{
-                borderRadius: 50,
-              }}
-            />
+                />
           </>
         )}
       </Formik>

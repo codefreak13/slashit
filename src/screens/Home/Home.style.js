@@ -27,10 +27,10 @@ export default StyleSheet.create({
     justifyContent: 'space-between'
   },
   captureIcon: {
-    marginTop: Dimensions.get('screen').height / 5,
+    marginTop: Dimensions.get('screen').height / 8,
     alignSelf: 'center',
     width: Dimensions.get('screen').width - 20,
-    height: 356,
+    height: 356, 
     
   },
   profile: {

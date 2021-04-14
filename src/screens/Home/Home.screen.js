@@ -10,7 +10,7 @@ import {
   Image,
   TouchableWithoutFeedback
 } from 'react-native'
-import {Text} from '../../components/'
+import {Text, LinearWrapper} from '../../components/'
 import LinearGradient from 'react-native-linear-gradient'
 import AsyncStorage from '@react-native-community/async-storage'
 import styles from './Home.style'
@@ -26,7 +26,8 @@ import PinModal from './pinModal'
 import SuccessModal from '../../components/SuccessModal'
 import LButton from '../../components/LinearGradientButton'
 import { useTheme } from '@react-navigation/native'
-import { getStoredState } from 'redux-persist'
+
+
 const Home = ({ navigation }) => {
   const [currentTab, setCurrentTab] = useState('in_3')
   const [image, setImage] = useState('')
@@ -68,32 +69,35 @@ const Home = ({ navigation }) => {
       id: 'in_3',
       title: 'Pay in 3',
       data: (
-        <View style={styles.captureIcon}>
-          <CaptureArea />
-        </View>
+        <TouchableOpacity onPress={()=>navigation.navigate("Scanner")} style={{...styles.captureIcon, alignItems: 'center', justifyContent: 'center'}}>
+          <View style={{ borderWidth: 2, borderColor: '#fff',width: '80%',borderRadius: 6, height: '90%', }}></View>
+          <Text style={{color: '#fff', marginTop: 5, fontSize: 18}}>Scan QR code to checkout</Text>
+        </TouchableOpacity>
       )
     },
     {
       id: 'in_4',
       title: 'Pay in 4',
       data: (
-        <View style={[styles.captureIcon]}>
-          <TouchableOpacity onPress={() => togglePayModal()}>
-            <CaptureArea />
+        <>
+          <TouchableOpacity onPress={() => togglePayModal()} style={{...styles.captureIcon, alignItems: 'center', justifyContent: 'center'}}>
+            <View style={{ borderWidth: 2, borderColor: '#fff',width: '80%',borderRadius: 6, height: '90%', }}></View>
+            <Text style={{color: '#fff', marginTop: 5, fontSize: 18}}>Scan QR code to checkout</Text>
           </TouchableOpacity>
-          <PayModal
-            visible={modals.showPayModal}
-            openCloseModalOpenPinModal={openCloseModalOpenPinModal}
-            setModal={togglePayModal}
-          />
-          <PinModal
-            visible={modals.showPinModal}
-            onClosePinModalOpenSuccessModal={onClosePinModalOpenSuccessModal}
-            setModal={togglePinModal}
-          />
-          <SuccessModal setModal={toggleSuccesModal} visible={modals.showSuccessModal} />
-        </View>
-      )
+           
+             <PayModal
+              visible={modals.showPayModal}
+              openCloseModalOpenPinModal={openCloseModalOpenPinModal}
+              setModal={togglePayModal}
+            />
+            <PinModal
+              visible={modals.showPinModal}
+              onClosePinModalOpenSuccessModal={onClosePinModalOpenSuccessModal}
+              setModal={togglePinModal}
+            />
+            <SuccessModal setModal={toggleSuccesModal} visible={modals.showSuccessModal} />
+         </>
+        ) 
     },
     {
       id: 'with_card',
@@ -104,12 +108,17 @@ const Home = ({ navigation }) => {
           <View style={styles.cardHolder}>
             <Card />
           </View>
-          <Dots second />
-          <LButton
+          <Dots second /> 
+             <LButton
+             width="50%"
+             alignSelf='center'
+          colors={ ['#673AB7' , '#851B97', ]}
+          borderRadius
             containerStyle={styles.btn}
-            title="Continue"
+            title="Pay with"
             onPress={() => handleTabChange('in_4')}
-          />
+          /> 
+         
         </View>
       )
     }
@@ -138,7 +147,7 @@ useEffect(()=>{
   return (
     <>
       <StatusBar barStyle="light-content" />
-      <View style={[styles.capture]}>
+      <LinearWrapper style={[styles.capture]}>
         <SafeAreaView>
           <View style={styles.nav}>
             <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
@@ -184,7 +193,7 @@ useEffect(()=>{
             
           {availbaleTabs.filter(x => x.id == currentTab)[0].data}
         </SafeAreaView>
-      </View>
+      </LinearWrapper>
     </>
   )
 }

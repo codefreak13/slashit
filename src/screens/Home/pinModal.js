@@ -14,6 +14,7 @@ import {useTheme} from '@react-navigation/native'
 import {Text} from '../../components'
 import { optionalConfigObject } from '../../utils/fingerPrintScannerConfig'
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input'
+import {show} from '../../utils/toast'
 const index = ({
   navigation,
   visible,
@@ -32,7 +33,8 @@ const index = ({
         onClosePinModalOpenSuccessModal()
       })
       .catch(error => {
-        console.log('Authentication Failed')
+        show('Authentication Failed or your device does not support touchId')
+        setModal()
       })
   }
 

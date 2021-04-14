@@ -88,11 +88,7 @@ const index = ({ navigation }) => {
               borderRadius
                 onPress={handleSubmit}
                 title="Send"
-                containerStyle={{
-                  borderRadius: 50,
-                  width: '50%',
-                  alignSelf: 'center'
-                }}
+                 width= '70%'
               />  
             </>
           )}

@@ -4,9 +4,9 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input'
 import { Formik } from 'formik'
 import * as yup from 'yup'
-import {Wrapper} from '../../../components';
+import { Wrapper } from '../../../components'
 import NavHeader from '../../../components/NavHeader/NavHeader.screen'
-import Button from '../../../components/Button'
+import LButton from '../../../components/LinearGradientButton'
 import styles from '../styles'
 
 const validationSchema = yup.object().shape({
@@ -40,13 +40,12 @@ const index = ({ navigation }) => {
             onTextChange={code => setCode(code)}
           />
         </View>
-        <Button
+
+        <LButton
+          width="100%"
+          borderRadius
           onPress={() => navigation.navigate('VerifyEmail')}
           title="Continue"
-          containerStyle={{
-            borderRadius: 50,
-            marginVertical: 20
-          }}
         />
       </SafeAreaView>
     </Wrapper>

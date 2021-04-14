@@ -1,19 +1,14 @@
-import React, {useState} from 'react'
-import {
-  Linking,
-  View,
-  TouchableOpacity,
-  ScrollView
-} from 'react-native'
+import React, { useState } from 'react'
+import { Linking, View, TouchableOpacity, ScrollView } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import NavHeader from '../../../components/NavHeader/NavHeader.screen'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import BaseInput from '../../../components/BaseInput'
-import Button from '../../../components/Button'
-import {Wrapper, Text} from '../../../components'; 
-import {useTheme} from '@react-navigation/native' 
+import LButton from '../../../components/LinearGradientButton'
+import { Wrapper, Text } from '../../../components'
+import { useTheme } from '@react-navigation/native'
 import styles from '../styles'
 
 const validationSchema = yup.object().shape({
@@ -36,7 +31,7 @@ const initialValues = {
 const BackIcon = () => <MaterialIcons name="keyboard-backspace" size={24} />
 
 const index = ({ navigation }) => {
-  const {colors} = useTheme()
+  const { colors } = useTheme()
   const [show, setShow] = useState(false)
   return (
     <Wrapper>
@@ -44,7 +39,9 @@ const index = ({ navigation }) => {
         <NavHeader rightSection={BackIcon} navigation={navigation} title="" />
 
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Text style={{...styles.boldText, color: colors.primary}}>Create a Shopper account</Text>
+          <Text style={{ ...styles.boldText, color: colors.primary }}>
+            Create a Shopper account
+          </Text>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -99,17 +96,15 @@ const index = ({ navigation }) => {
                     </TouchableOpacity>
                   }
                 />
-                {
-                  show ? (
-                    <View style={{ alignItems: 'center', marginVertical: 6 }}>
-                  <Text>Why do you need my phone number?</Text>
-                  <Text style={{ textAlign: 'center' }}>
-                    We need your phone number to send you repayment reminders
-                  </Text>
-                </View>
-                  ) : null
-                }
-                
+                {show ? (
+                  <View style={{ alignItems: 'center', marginVertical: 6 }}>
+                    <Text>Why do you need my phone number?</Text>
+                    <Text style={{ textAlign: 'center' }}>
+                      We need your phone number to send you repayment reminders
+                    </Text>
+                  </View>
+                ) : null}
+
                 <BaseInput
                   secureTextEntry
                   value={values.password}
@@ -147,11 +142,12 @@ const index = ({ navigation }) => {
                   By clicking the button below you agree to our Terms, Privacy
                   Policy and Cookie Policy
                 </Text>
-                
-                <Button
+
+                <LButton
+                  width="100%"
+                  borderRadius
                   onPress={handleSubmit}
                   title="Sign up"
-                  containerStyle={{ borderRadius: 50, marginVertical: 15 }}
                 />
               </>
             )}

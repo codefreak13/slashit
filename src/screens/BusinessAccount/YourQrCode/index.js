@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import QRCode from 'react-native-qrcode-svg'
 import LinearGradient from 'react-native-linear-gradient'
 import {SafeAreaView, View, Share } from 'react-native'
-import { Wrapper, Text } from '../../../components'
+import { Wrapper, Text, LinearWrapper } from '../../../components'
 import Entypo from 'react-native-vector-icons/Entypo'
 import NavHeader from '../../../components/NavHeader/NavHeader.screen'
 import { useTheme } from '@react-navigation/native'
@@ -29,12 +29,8 @@ const index = ({ navigation }) => {
     }
   }
   return (
-    <SafeAreaView style={{flex: 1}}>
-       <LinearGradient
-      start={{ x: 1, y:  0 }}
-      end={{ x:  0 , y:  0 }}
-      colors={['#851B97', '#673AB7']} 
-      style={{flex: 1}}>
+    <LinearWrapper>
+         <SafeAreaView style={{flex: 1}}>
       <NavHeader
         close
         closeWhite="#fff"
@@ -57,8 +53,8 @@ const index = ({ navigation }) => {
       </View>
       </View>
       
-      </LinearGradient>
     </SafeAreaView>
+      </LinearWrapper>
   )
 }
 
