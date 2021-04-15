@@ -16,7 +16,7 @@ import {Text, Wrapper} from '../../components'
 import { useTheme } from '@react-navigation/native'
 const ManageCards = ({ navigation }) => {
   const [visible, setVisble] = useState(false)
-
+  const [preferred, setPreferred] = useState(false)
   const showModal = () => setVisble(true)
   const hideModal = () => setVisble(false)
 const {colors} = useTheme()
@@ -25,12 +25,12 @@ const {colors} = useTheme()
       <StatusBar barStyle="dark-content" /> 
         <NavHeader close navigation={navigation} title="Manage Cards" />
         <View style={styles.cardContainer}>
-          <Card />
+          <Card preferred={preferred}/>
         </View>
         <View style={styles.topBtnContainer}>
-          <TouchableOpacity style={styles.btn}>
+          <TouchableOpacity onPress={()=>setPreferred(!preferred)} style={styles.btn}>
             <View>
-              <Text style={styles.btnText}>Set as preferred</Text>
+              <Text style={styles.btnText}>{preferred ? 'Remove Card' : 'Set as preferred'}</Text>
             </View>
           </TouchableOpacity>
 

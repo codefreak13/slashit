@@ -29,11 +29,14 @@ export default StyleSheet.create({
         marginRight: 20
     },
     cardNumberWrapper: {
-       marginBottom: 20
+    //    marginBottom: 20
+    alignItems: 'center',
+    marginTop: 60,
     },
     cardNumber: {
         fontSize: 26,
-        padding: 5,
+        // padding: 5,
+        textAlign:'center',
         color: '#fff',
     },
     cardLastRow: {
