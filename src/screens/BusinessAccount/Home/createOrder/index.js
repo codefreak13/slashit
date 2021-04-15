@@ -41,11 +41,11 @@ const initialValues = {
   postCode: ''
 }
 
-let stateArray = [];
-const initial = [{ label: '', value: '' }];
+let stateArray = []
+const initial = [{ label: '', value: '' }]
 const CreateText = color => (
   <Text style={{ fontSize: 14, fontWeight: 'bold' }}>Create</Text>
-);
+)
 
 const index = ({ navigation }) => {
   const [image, setImage] = useState('')
@@ -53,7 +53,7 @@ const index = ({ navigation }) => {
     console.log(data)
     setImage(data.uri)
   }
-  
+
   const [show, setShow] = useState(true)
   const [country, setCountry] = useState()
   const [countryStates, setCountryStates] = useState(initial)
@@ -62,22 +62,23 @@ const index = ({ navigation }) => {
   const onSetState = state => setState(state)
 
   // function to return a country and gets its states which it uses to populate the state array
-  const onSetCountry = country => { 
-    const {states} = countries.find(item => item.country === country);
+  const onSetCountry = country => {
+    const { states } = countries.find(item => item.country === country)
     stateArray = []
     states.map(item => {
       let label = item
       let value = item
       let state = {
-        label, value
-      } 
-      stateArray.push(state) 
-    });
+        label,
+        value
+      }
+      stateArray.push(state)
+    })
     setCountry(country)
-    setCountryStates(stateArray) 
-  } 
-  
-console.log(country, state, 'cccccc')
+    setCountryStates(stateArray)
+  }
+
+  console.log(country, state, 'cccccc')
   return (
     <Wrapper>
       <StatusBar barStyle="dark-content" />
@@ -88,7 +89,7 @@ console.log(country, state, 'cccccc')
         leftSectionAction={() => navigation.navigate('OrderCreated')}
         navigation={navigation}
       />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={{paddingBottom: 10}} showsVerticalScrollIndicator={false}>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -183,33 +184,25 @@ console.log(country, state, 'cccccc')
                     onValueChange={onSetCountry}
                     placeholder={{ label: 'Country', value: null }}
                   />
-                  {
-                    countryStates ? <Picker
-                    PickerData={countryStates}
-                    onValueChange={onSetState}
-                    placeholder={{ label: 'State', value: null }}
-                  /> : null
-                  }
-                   
-                <View
+
+                  <View
                     style={{
                       borderBottomWidth: 0.6,
                       borderColor: '#757575',
                       flexDirection: 'row',
                       justifyContent: 'space-between',
                       width: '100%',
-                      paddingHorizontal: 10
+                      paddingHorizontal: 10,
+                      alignItems: 'center'
                     }}>
-                    <BaseInput
-                      value={values.state}
-                      onChangeText={handleChange('state')}
-                      errors={errors.state}
-                      touched={touched.state}
-                      name={values.state}
-                      placeholder="State"
-                      style={styles.style1}
-                      inputStyle={styles.listData}
-                    />
+                    <View style={{ width: '60%' }}>
+                      <Picker
+                        PickerData={countryStates}
+                        onValueChange={onSetState}
+                        placeholder={{ label: 'State', value: null }}
+                        pickerContainerStyle={{ borderBottomWidth: 0 }}
+                      />
+                    </View>
                     <BaseInput
                       value={values.postCode}
                       onChangeText={handleChange('postCode')}
@@ -220,7 +213,7 @@ console.log(country, state, 'cccccc')
                       style={styles.style1}
                       inputStyle={styles.listData}
                     />
-                  </View> 
+                  </View>
                 </>
               ) : null}
 
@@ -239,8 +232,7 @@ console.log(country, state, 'cccccc')
                       handleImageResponse
                     )
                   }
-                  style={styles.profile}
-                  >
+                  style={styles.profile}>
                   {image ? (
                     <Image
                       style={styles.profile}
@@ -260,7 +252,11 @@ console.log(country, state, 'cccccc')
                   <TouchableOpacity style={styles.profile} key={Math.random()}>
                     <Image
                       key={Math.random()}
-                      style={{ width: IMAGE_SIZE, height: IMAGE_SIZE, borderRadius: 150 }}
+                      style={{
+                        width: IMAGE_SIZE,
+                        height: IMAGE_SIZE,
+                        borderRadius: 150
+                      }}
                       source={require('../../../../assets/images/profile.jpeg')}
                       resizeMode="contain"
                     />

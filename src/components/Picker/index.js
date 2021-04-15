@@ -118,16 +118,16 @@ const styles = StyleSheet.create({
 })
 
 Picker.propTypes = {
-  placeholder: propTypes.string,
-  selectedValue: propTypes.string.isRequired,
-  onValueChange: propTypes.func.isRequired,
-  pickerContainerView: propTypes.object,
-  PickerOptions: propTypes.arrayOf(
-    propTypes.shape({
-      label: propTypes.string,
-      value: propTypes.oneOfType([propTypes.string, propTypes.number])
-    })
-  ).isRequired
+  // placeholder: propTypes.string,
+  // selectedValue: propTypes.string.isRequired,
+  // onValueChange: propTypes.func.isRequired,
+  // pickerContainerView: propTypes.object,
+  // PickerOptions: propTypes.arrayOf(
+  //   propTypes.shape({
+  //     label: propTypes.string,
+  //     value: propTypes.oneOfType([propTypes.string, propTypes.number])
+  //   })
+  // ).isRequired
 } 
 
 
