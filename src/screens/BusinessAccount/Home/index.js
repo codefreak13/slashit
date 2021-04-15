@@ -54,7 +54,7 @@ const index = ({ navigation }) => {
             <Text style={styles.boldText}>Add Money</Text>
           </TouchableOpacity>
         </View>
-        <Button borderRadius title="Create Order" containerStyle={styles.btn} onPress={()=>navigation.navigate("CreateOrder")} />
+        <Button width= '70%' borderRadius title="Create Order"   onPress={()=>navigation.navigate("CreateOrder")} />
         <View style={{ marginTop: 20 }}>
           <Text style={styles.boldText}>Recent</Text>
           {data.map(({date, time, amount}) => (

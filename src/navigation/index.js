@@ -141,8 +141,8 @@ const AppRoute = () => {
     <AuthContext.Provider value={authContext}>
       <NavigationContainer
         theme={
-          scheme !== 'dark' || isDark ? customDarkTheme : customDefaultTheme
-          // isDark ? customDarkTheme : customDefaultTheme
+          // scheme === 'dark' || isDark ? customDarkTheme : customDefaultTheme
+          isDark ? customDarkTheme : customDefaultTheme
         }>
         {loginState.userToken !== null ? (
           loginState.accountType === 'BusinessAccount' ? (

@@ -7,7 +7,7 @@ const Stack = createStackNavigator()
 
 const index = () => {
     return (
-      <Stack.Navigator initialRouteName="Refund" headerMode='none'>
+      <Stack.Navigator initialRouteName="Transactions" headerMode='none'>
         <Stack.Screen name="Transactions" component={Transactions} />
         <Stack.Screen name="TransactionDetails" component={TransactionDetails} /> 
         <Stack.Screen name="Refund" component={Refund} /> 

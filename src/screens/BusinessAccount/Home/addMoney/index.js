@@ -35,7 +35,7 @@ const index = ({ navigation }) => {
             <Text style={styles.boldText}>Mathno</Text>
           </View>
           <View style={{width: '50%', justifyContent: 'flex-end'}}>
-            <Button onPress={()=>copyToClipboard()} containerStyle={{borderRadius: 5, width: '50%', alignSelf: 'flex-end'}} title="Copy"/>
+            <Button width="70%" onPress={()=>copyToClipboard()} containerStyle={{borderRadius: 5, width: '50%', alignSelf: 'flex-end'}} title="Copy"/>
           </View>
         </View>
       </View>

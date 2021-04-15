@@ -32,7 +32,7 @@ const index = ({ navigation }) => {
           <Text style={{ fontSize: 16 }}>{'\u20A6'}7,500.00</Text>
         </View>
 
-        <Button borderRadius title="Refund" containerStyle={{ borderRadius: 40,width: '40%', alignSelf: 'center', marginTop: 40}}/>
+        <Button width='70%' borderRadius title="Refund" containerStyle={{ borderRadius: 40,width: '40%', alignSelf: 'center', marginTop: 40}}/>
       </View>
     </Wrapper>
   )

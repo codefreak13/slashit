@@ -5,7 +5,7 @@ import { Formik } from 'formik'
 import * as yup from 'yup'
 import BaseInput from '../../../components/BaseInput'
 import NavHeader from '../../../components/NavHeader/NavHeader.screen'
-import Button from '../../../components/Button'
+import LButton from '../../../components/LinearGradientButton'
 import {Wrapper} from '../../../components';
 
 import styles from '../styles'
@@ -60,14 +60,13 @@ const index = ({navigation}) => {
                 name={values.confirmPassword}
                 placeholder="Confirm Password"
               />
-            
-            <Button
-            onPress={handleSubmit}
+            <LButton
+          width="100%"
+          borderRadius
+          onPress={handleSubmit}
               title="Done" 
-              containerStyle={{
-                borderRadius: 50,
-              }}
-            />
+        />
+             
           </>
         )}
       </Formik>

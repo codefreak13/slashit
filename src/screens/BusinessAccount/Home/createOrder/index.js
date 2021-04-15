@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   View,
   StatusBar,
@@ -16,8 +16,7 @@ import styles from './styles'
 import { Text, Wrapper } from '../../../../components'
 import { countries } from '../../../../components/CountryArray'
 import Picker from '../../../../components/Picker'
-// import {Picker} from '@react-native-picker/picker';
-// import RNPickerSelect from "react-native-picker-select";
+const IMAGE_SIZE = 60
 const data = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 const validationSchema = yup.object().shape({
   productName: yup.string().required('This field is required.'),
@@ -41,26 +40,45 @@ const initialValues = {
   state: '',
   postCode: ''
 }
+
+let stateArray = []
+const initial = [{ label: '', value: '' }]
 const CreateText = color => (
   <Text style={{ fontSize: 14, fontWeight: 'bold' }}>Create</Text>
 )
+
 const index = ({ navigation }) => {
   const [image, setImage] = useState('')
   const handleImageResponse = async data => {
     console.log(data)
     setImage(data.uri)
   }
+
   const [show, setShow] = useState(true)
   const [country, setCountry] = useState()
-  const onSetCountry = country => setCountry(country)
-  console.log(country, 'ff')
-  const [profile, setProfile] = useState({
-    name: 'Anna Appleseed',
-    address: 'Main street, NYC',
-    phone: '+23489787897789',
-    email: 'turtle@gmail.com',
-    supportEmail: 'support@turtle.com'
-  })
+  const [countryStates, setCountryStates] = useState(initial)
+  const [state, setState] = useState('')
+
+  const onSetState = state => setState(state)
+
+  // function to return a country and gets its states which it uses to populate the state array
+  const onSetCountry = country => {
+    const { states } = countries.find(item => item.country === country)
+    stateArray = []
+    states.map(item => {
+      let label = item
+      let value = item
+      let state = {
+        label,
+        value
+      }
+      stateArray.push(state)
+    })
+    setCountry(country)
+    setCountryStates(stateArray)
+  }
+
+  console.log(country, state, 'cccccc')
   return (
     <Wrapper>
       <StatusBar barStyle="dark-content" />
@@ -71,7 +89,7 @@ const index = ({ navigation }) => {
         leftSectionAction={() => navigation.navigate('OrderCreated')}
         navigation={navigation}
       />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={{paddingBottom: 10}} showsVerticalScrollIndicator={false}>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -166,6 +184,7 @@ const index = ({ navigation }) => {
                     onValueChange={onSetCountry}
                     placeholder={{ label: 'Country', value: null }}
                   />
+
                   <View
                     style={{
                       borderBottomWidth: 0.6,
@@ -173,18 +192,17 @@ const index = ({ navigation }) => {
                       flexDirection: 'row',
                       justifyContent: 'space-between',
                       width: '100%',
-                      paddingHorizontal: 10
+                      paddingHorizontal: 10,
+                      alignItems: 'center'
                     }}>
-                    <BaseInput
-                      value={values.state}
-                      onChangeText={handleChange('state')}
-                      errors={errors.state}
-                      touched={touched.state}
-                      name={values.state}
-                      placeholder="State"
-                      style={styles.style1}
-                      inputStyle={styles.listData}
-                    />
+                    <View style={{ width: '60%' }}>
+                      <Picker
+                        PickerData={countryStates}
+                        onValueChange={onSetState}
+                        placeholder={{ label: 'State', value: null }}
+                        pickerContainerStyle={{ borderBottomWidth: 0 }}
+                      />
+                    </View>
                     <BaseInput
                       value={values.postCode}
                       onChangeText={handleChange('postCode')}
@@ -231,10 +249,14 @@ const index = ({ navigation }) => {
                   )}
                 </TouchableOpacity>
                 {data.map(item => (
-                  <TouchableOpacity key={Math.random()}>
+                  <TouchableOpacity style={styles.profile} key={Math.random()}>
                     <Image
                       key={Math.random()}
-                      style={styles.profile}
+                      style={{
+                        width: IMAGE_SIZE,
+                        height: IMAGE_SIZE,
+                        borderRadius: 150
+                      }}
                       source={require('../../../../assets/images/profile.jpeg')}
                       resizeMode="contain"
                     />

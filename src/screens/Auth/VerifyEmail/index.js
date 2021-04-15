@@ -6,6 +6,7 @@ import { Formik } from 'formik'
 import * as yup from 'yup'
 import {Wrapper} from '../../../components';
 import NavHeader from '../../../components/NavHeader/NavHeader.screen'
+import LButton from '../../../components/LinearGradientButton'
 import Button from '../../../components/Button'
 import styles from '../styles'
 
@@ -55,13 +56,12 @@ const index = ({ navigation }) => {
           }}
           textStyle={{color: "#000"}}
         />
-        <Button
+         
+        <LButton
+          width="100%"
+          borderRadius
           onPress={() => navigation.navigate('SetNewPassword')}
           title="Continue"
-          containerStyle={{
-            borderRadius: 50,
-            marginVertical: 20
-          }}
         />
       </SafeAreaView>
     </Wrapper>

@@ -5,7 +5,7 @@ import {
   TextInput, 
 } from 'react-native'
 import AntDesign from 'react-native-vector-icons/AntDesign' 
-import Button from '../../components/Button'
+import Button from '../../components/LinearGradientButton'
 import NavHeader from '../../components/NavHeader/NavHeader.screen'
 import {Wrapper, Text} from '../../components';
 import {useTheme} from '@react-navigation/native'
@@ -48,6 +48,8 @@ const {colors} = useTheme()
           </Text>
           <Button
             title="Contine to"
+            width = '70%' 
+            borderRadius
             onPress={() => navigation.navigate("InstagramPage", {
               uri: `https://www.instagram.com/${username ? username : 'manage_access'}/`
             })}

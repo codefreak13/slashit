@@ -6,6 +6,7 @@ import {
   ScrollView
 } from 'react-native'
 import BackIcon from '../../../assets/images/BackIcon'
+import LButton from '../../../components/LinearGradientButton'
 import Button from '../../../components/Button'
 import NavHeader from '../../../components/NavHeader/NavHeader.screen'
 import {Wrapper, Text} from '../../../components';
@@ -25,7 +26,7 @@ const index = ({ navigation }) => {
         navigation={navigation}
         title="Order #2234765"
       />
-      <ScrollView contentContainerStyle={{flex: 1}}>
+      <ScrollView contentContainerStyle={{flex: 1, paddingVertical: 5}}>
       <SafeAreaView style={styles.container}>
         <View style={[styles.top, {backgroundColor:colors.card }]}>
           <Text style={styles.boldText}>Nike Store</Text>
@@ -43,15 +44,19 @@ const index = ({ navigation }) => {
           </Text>
           <Text>Shipping Address_</Text>
         </View>
-        <View style={{flex: 3,justifyContent: 'space-around'}}>
+        <View style={{flex: 3,justifyContent: 'space-around', }}>
         <PaidInstallment navigateTo="TransactionDetails"/>
         <UnPaidInstallment name="Second" navigateTo="TransactionDetails"/>
         <UnPaidInstallment name="Third" navigateTo="TransactionDetails"/>
         <UnPaidInstallment name="Final" navigateTo="TransactionDetails"/>
-        <Button
-          title="Pay Now"
-          containerStyle={{marginVertical: 20, width: '60%', alignSelf: 'center' }}
-        />
+        
+        <LButton
+        borderRadius
+              width="50%"
+              alignSelf="center"
+              title="Pay now" 
+              wrapperStyle={{marginTop: -10 }}
+            />
         </View>
       </SafeAreaView>
       </ScrollView>

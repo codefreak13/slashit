@@ -1,3 +1,5 @@
 import Wrapper from './Wrapper';
+import LinearWrapper from './Wrapper/LinearWrapper'
 import {Text} from './Text'
-export {Wrapper, Text}
+import Calendar from './Calendar'
+export {Wrapper, Text, LinearWrapper, Calendar}
